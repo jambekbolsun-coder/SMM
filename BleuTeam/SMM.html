@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="ru" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMM_KADR - Маркетинг, который приводит клиентов</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { mont: ['Montserrat', 'sans-serif'] },
+          colors: { brand: '#2563EB', brandDark: '#1d4ed8' }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { font-family: 'Montserrat', sans-serif; }
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(37,99,235,0.15); }
+    .gradient-bg { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%); }
+    .btn-primary { background: #2563EB; color: white; transition: all 0.3s; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
+    .btn-outline { border: 2px solid #2563EB; color: #2563EB; transition: all 0.3s; }
+    .btn-outline:hover { background: #2563EB; color: white; transform: translateY(-2px); }
+    .toggle-active { background: #2563EB; color: white; }
+    .toggle-inactive { background: #f1f5f9; color: #64748b; }
+    html { scroll-behavior: smooth; }
+    .star { color: #fbbf24; font-size: 1.2rem; cursor: pointer; transition: all 0.2s; }
+    .star:hover { transform: scale(1.2); }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full bg-white text-gray-800 overflow-auto"><!-- Sticky WhatsApp Button --> <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"> <i data-lucide="message-circle" class="w-6 h-6"></i> </a> <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-40 border-b border-gray-100">
+   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-xl font-bold text-brand">
+     SMM_KADR
+    </div>
+    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600"><a href="#about" class="hover:text-brand transition" data-i18n="nav_about">О нас</a> <a href="#services" class="hover:text-brand transition" data-i18n="nav_services">Услуги</a> <a href="#pricing" class="hover:text-brand transition" data-i18n="nav_pricing">Тарифы</a> <a href="#team" class="hover:text-brand transition" data-i18n="nav_team">Команда</a> <a href="#reviews" class="hover:text-brand transition" data-i18n="nav_reviews">Отзывы</a> <a href="#contact" class="hover:text-brand transition" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="flex items-center gap-4"><select id="lang-select" class="px-3 py-2 rounded-full text-sm border border-gray-200 focus:border-brand focus:outline-none bg-white font-medium"> <option value="ru">🇷🇺 Русский</option> <option value="en">🇺🇸 English</option> <option value="ky">🇰🇬 Кыргызча</option> </select> <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="btn-primary px-5 py-2 rounded-full text-sm font-medium hidden sm:inline-block" data-i18n="nav_consult">Консультация</a>
+    </div>
+   </div>
+  </nav><!-- Hero -->
+  <section class="gradient-bg pt-32 pb-20 px-6">
+   <div class="max-w-5xl mx-auto text-center fade-up">
+    <h1 id="hero-title" class="text-4xl md:text-6xl font-800 leading-tight text-gray-900 mb-6">Маркетинг, который приводит клиентов,<br>
+     а не просто лайки</h1>
+    <p id="hero-subtitle" class="text-lg md:text-xl text-gray-600 mb-10 font-medium">Полная команда маркетологов от 65 000 сом/месяц</p>
+    <div class="flex flex-wrap justify-center gap-4"><a href="#contact" class="btn-primary px-8 py-4 rounded-full font-semibold text-base" data-i18n="btn_consult">Получить консультацию</a> <a href="#services" class="btn-outline px-8 py-4 rounded-full font-semibold text-base" data-i18n="btn_cases">Смотреть услуги</a>
+    </div>
+   </div>
+  </section><!-- About -->
+  <section id="about" class="py-20 px-6">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold mb-12 text-gray-900 text-center" data-i18n="about_title">О SMM_KADR</h2>
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+     <div class="bg-white p-8 rounded-2xl border border-gray-100">
+      <h3 class="font-bold text-xl mb-3 text-gray-900" data-i18n="about_mission">Наша миссия</h3>
+      <p id="about-text" class="text-gray-600 leading-relaxed" data-i18n="about_text">Мы полнопрофильная команда маркетологов, которая занимается всем: от разработки стратегии и создания контента до рекламной кампании и роста. Доставляем реальные результаты бизнеса.</p>
+     </div>
+     <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200">
+      <h3 class="font-bold text-xl mb-4 text-gray-900" data-i18n="about_stats">Наши цифры</h3>
+      <div class="space-y-4">
+       <div class="flex items-center gap-4"><span class="text-4xl font-bold text-brand">50+</span>
+        <p class="text-gray-600 font-medium" data-i18n="stat_clients">Успешных клиентов</p>
+       </div>
+       <div class="flex items-center gap-4"><span class="text-4xl font-bold text-brand">1000+</span>
+        <p class="text-gray-600 font-medium" data-i18n="stat_videos">Видео создано</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+     <div class="bg-gray-50 p-5 rounded-xl text-center">
+      <p class="text-sm text-gray-600" data-i18n="about_what">Что мы делаем?</p>
+      <p class="font-bold text-gray-900 mt-2" data-i18n="about_what_desc">Стратегия → Контент → Реклама</p>
+     </div>
+     <div class="bg-gray-50 p-5 rounded-xl text-center">
+      <p class="text-sm text-gray-600" data-i18n="about_for">Для кого?</p>
+      <p class="font-bold text-gray-900 mt-2" data-i18n="about_for_desc">Бизнес, которому нужны клиенты</p>
+     </div>
+     <div class="bg-gray-50 p-5 rounded-xl text-center">
+      <p class="text-sm text-gray-600" data-i18n="about_result">Результат?</p>
+      <p class="font-bold text-gray-900 mt-2" data-i18n="about_result_desc">Доказанный рост продаж</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services -->
+  <section id="services" class="py-20 px-6 bg-gray-50">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-i18n="services_title">Наши услуги</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       🎬
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service1">Видео продакшн</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service1_desc">Профессиональные видео, которые превращают зрителей в клиентов</p>
+     </div>
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       🎯
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service2">Таргет реклама</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service2_desc">Точный таргетинг аудитории для максимального ROI</p>
+     </div>
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       🧠
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service3">Стратегия</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service3_desc">Стратегии маркетинга, основанные на данных и адаптированные под вашу аудиторию</p>
+     </div>
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       📱
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service4">Ведение соцсетей</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service4_desc">Полное управление вашим присутствием в социальных сетях</p>
+     </div>
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       🎨
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service5">Дизайн</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service5_desc">Визуалы, которые укрепляют вашу фирменный стиль</p>
+     </div>
+     <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100 text-center">
+      <div class="text-6xl mb-4">
+       📊
+      </div>
+      <h3 class="font-bold text-lg mb-2" data-i18n="service6">Аналитика</h3>
+      <p class="text-gray-500 text-sm" data-i18n="service6_desc">Отслеживание, измерение и масштабирование вашего успеха</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Pricing -->
+  <section id="pricing" class="py-20 px-6">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-4 text-gray-900" data-i18n="pricing_title">Тарифы</h2>
+    <p class="text-center text-gray-500 mb-8" data-i18n="pricing_subtitle">Выберите тариф, который подходит вам</p>
+    <div class="flex justify-center mb-12">
+     <div class="bg-gray-100 rounded-full p-1 flex"><button id="toggle-monthly" onclick="togglePricing('monthly')" class="px-6 py-2 rounded-full text-sm font-medium transition-all toggle-active" data-i18n="pricing_monthly">Месячные</button> <button id="toggle-onetime" onclick="togglePricing('onetime')" class="px-6 py-2 rounded-full text-sm font-medium transition-all toggle-inactive" data-i18n="pricing_onetime">Разовые</button>
+     </div>
+    </div>
+    <div id="pricing-monthly" class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+     <div class="bg-white p-8 rounded-2xl border border-gray-200 card-hover">
+      <h3 class="font-bold text-xl mb-2" data-i18n="plan_standard">СТАНДАРТ</h3>
+      <div class="text-4xl font-bold text-brand mb-1">
+       65 000<span class="text-lg text-gray-400 font-medium" data-i18n="price_som"> сом/мес</span>
+      </div>
+      <ul class="mt-6 space-y-3 text-sm text-gray-600">
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_1">7 видео в месяц</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_2">Команда маркетологов</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_3">Видеограф</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_4">Амбассадор</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_5">Таргет-специалист</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-brand mt-0.5 flex-shrink-0"></i><span data-i18n="plan_std_6">Менеджер + Контент</span></li>
+      </ul><a href="#contact" class="btn-outline w-full mt-8 py-3 rounded-xl font-semibold text-center block" data-i18n="btn_choose">Выбрать</a>
+     </div>
+     <div class="bg-brand p-8 rounded-2xl card-hover relative overflow-hidden text-white"><span class="absolute top-4 right-4 bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full" data-i18n="label_popular">Популярный</span>
+      <h3 class="font-bold text-xl mb-2" data-i18n="plan_advanced">РАСШИРЕННЫЙ</h3>
+      <div class="text-4xl font-bold mb-1">
+       85 000<span class="text-lg opacity-70 font-medium" data-i18n="price_som"> сом/мес</span>
+      </div>
+      <ul class="mt-6 space-y-3 text-sm text-blue-100">
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-white mt-0.5 flex-shrink-0"></i><span data-i18n="plan_adv_1">Все в Стандарте</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-white mt-0.5 flex-shrink-0"></i><span data-i18n="plan_adv_2">Сторимейкер</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-white mt-0.5 flex-shrink-0"></i><span data-i18n="plan_adv_3">Графический дизайнер</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-white mt-0.5 flex-shrink-0"></i><span data-i18n="plan_adv_4">Расширенный контент-план</span></li>
+       <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-white mt-0.5 flex-shrink-0"></i><span data-i18n="plan_adv_5">Приоритетная поддержка</span></li>
+      </ul><a href="#contact" class="bg-white text-brand w-full mt-8 py-3 rounded-xl font-semibold text-center block hover:bg-blue-50 transition" data-i18n="btn_choose">Выбрать</a>
+     </div>
+    </div>
+    <div id="pricing-onetime" class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto hidden">
+     <div class="bg-white p-8 rounded-2xl border border-gray-200 card-hover">
+      <h3 class="font-bold text-xl mb-2" data-i18n="plan_basic">БАЗОВЫЙ</h3>
+      <div class="text-4xl font-bold text-brand mb-1">
+       12 500<span class="text-lg text-gray-400 font-medium" data-i18n="price_som"> сом</span>
+      </div>
+      <p class="text-gray-500 text-sm mt-4" data-i18n="plan_basic_desc">Разовой пакет услуг для быстрых проектов и отдельных поставок.</p><a href="#contact" class="btn-outline w-full mt-8 py-3 rounded-xl font-semibold text-center block" data-i18n="btn_start">Начать</a>
+     </div>
+     <div class="bg-white p-8 rounded-2xl border-2 border-brand card-hover">
+      <h3 class="font-bold text-xl mb-2" data-i18n="plan_pro">ПРОДВИНУТЫЙ</h3>
+      <div class="text-4xl font-bold text-brand mb-1">
+       15 000<span class="text-lg text-gray-400 font-medium" data-i18n="price_som"> сом</span>
+      </div>
+      <p class="text-gray-500 text-sm mt-4" data-i18n="plan_pro_desc">Расширенный разовый пакет с дополнительными услугами и приоритетной обработкой.</p><a href="#contact" class="btn-primary w-full mt-8 py-3 rounded-xl font-semibold text-center block" data-i18n="btn_start">Начать</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Team -->
+  <section id="team" class="py-20 px-6">
+   <div class="max-w-6xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-i18n="team_title">Наша команда</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       📞
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_1">Begimay Boronbaeva</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_1">Менеджер</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_1">Работа с клиентами</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       🧠
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_2">Ramil Kadyrov</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_2">Руководитель</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_2">Стратегия и управление</p>
+     </div>
+    
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       🎬
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_3">Тариель</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_3">Монтажер</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_3">Правая рука руководителя</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       🎯
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_4">Эржан</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_4">Таргетолог</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_4">Таргет и съемка</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       🎥
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_5">Сайкал</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_5">Оператор</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_5">Монтаж и съемка</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       🎓
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_6">Актан</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_6">Монтажер</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_6">Профессионал, обучает</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       📊
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_7">Арсен</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_7">Руководство</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_7">Планирование и контроль</p>
+     </div>
+     <div class="bg-white rounded-2xl p-6 text-center card-hover border border-gray-100 hover:border-brand/30 transition-colors">
+      <div class="text-6xl mb-4">
+       📋
+      </div>
+      <h3 class="font-bold text-base text-gray-900" data-i18n="team_member_8">Асема</h3>
+      <p class="text-brand text-xs font-semibold mb-2" data-i18n="team_role_8">Помощник менеджера</p>
+      <p class="text-gray-500 text-xs leading-relaxed" data-i18n="team_desc_8">Координация проектов</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Cases -->
+  <section id="cases" class="py-20 px-6 bg-gray-50">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-i18n="cases_title">Наши результаты</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+      <div class="text-3xl font-bold text-brand mb-2">
+       +300%
+      </div>
+      <p class="text-gray-600 text-sm font-medium" data-i18n="case1">Увеличение охвата</p>
+      <p class="text-gray-400 text-xs mt-2" data-i18n="case1_detail">Сеть ресторанов — 3 месяца</p>
+     </div>
+     <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+      <div class="text-3xl font-bold text-brand mb-2">
+       +150%
+      </div>
+      <p class="text-gray-600 text-sm font-medium" data-i18n="case2">Генерация лидов</p>
+      <p class="text-gray-400 text-xs mt-2" data-i18n="case2_detail">Салон красоты — 2 месяца</p>
+     </div>
+     <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+      <div class="text-3xl font-bold text-brand mb-2">
+       +500%
+      </div>
+      <p class="text-gray-600 text-sm font-medium" data-i18n="case3">Рост подписчиков</p>
+      <p class="text-gray-400 text-xs mt-2" data-i18n="case3_detail">Fashion бренд — 4 месяца</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials -->
+  <section id="reviews" class="py-20 px-6">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-i18n="reviews_title">Отзывы клиентов</h2>
+    <div id="reviews-container" class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8"></div>
+    <div class="max-w-md mx-auto bg-white p-6 rounded-2xl border border-gray-100">
+     <h3 class="font-bold mb-4 text-gray-900" data-i18n="add_review">Оставить отзыв</h3><input id="review-name" type="text" placeholder="Ваше имя" class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-brand focus:outline-none mb-3 text-sm" data-placeholder-i18n="placeholder_name"> <textarea id="review-text" placeholder="Ваш отзыв" class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-brand focus:outline-none mb-3 text-sm h-20 resize-none" data-placeholder-i18n="placeholder_review"></textarea>
+     <div class="flex gap-1 mb-4"><button onclick="setRating(1)" class="star text-2xl opacity-30">★</button> <button onclick="setRating(2)" class="star text-2xl opacity-30">★</button> <button onclick="setRating(3)" class="star text-2xl opacity-30">★</button> <button onclick="setRating(4)" class="star text-2xl opacity-30">★</button> <button onclick="setRating(5)" class="star text-2xl opacity-30">★</button>
+     </div><button onclick="submitReview()" class="btn-primary w-full py-2 rounded-lg font-semibold text-sm" data-i18n="submit_review">Отправить</button>
+    </div>
+   </div>
+  </section><!-- Process -->
+  <section class="py-20 px-6 bg-gray-50">
+   <div class="max-w-5xl mx-auto fade-up">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-i18n="process_title">Как мы работаем</h2>
+    <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+     <div class="flex items-center gap-2 md:gap-3 bg-white px-4 md:px-6 py-3 rounded-lg md:rounded-xl border border-gray-100">
+      <span class="w-7 h-7 md:w-8 md:h-8 bg-brand text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">1</span><span class="font-medium text-xs md:text-sm" data-i18n="step_1">Анализ</span>
+     </div>
+     <div class="flex items-center gap-2 md:gap-3 bg-white px-4 md:px-6 py-3 rounded-lg md:rounded-xl border border-gray-100">
+      <span class="w-7 h-7 md:w-8 md:h-8 bg-brand text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">2</span><span class="font-medium text-xs md:text-sm" data-i18n="step_2">Стратегия</span>
+     </div>
+     <div class="flex items-center gap-2 md:gap-3 bg-white px-4 md:px-6 py-3 rounded-lg md:rounded-xl border border-gray-100">
+      <span class="w-7 h-7 md:w-8 md:h-8 bg-brand text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">3</span><span class="font-medium text-xs md:text-sm" data-i18n="step_3">Съемка</span>
+     </div>
+     <div class="flex items-center gap-2 md:gap-3 bg-white px-4 md:px-6 py-3 rounded-lg md:rounded-xl border border-gray-100">
+      <span class="w-7 h-7 md:w-8 md:h-8 bg-brand text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">4</span><span class="font-medium text-xs md:text-sm" data-i18n="step_4">Реклама</span>
+     </div>
+     <div class="flex items-center gap-2 md:gap-3 bg-white px-4 md:px-6 py-3 rounded-lg md:rounded-xl border border-gray-100">
+      <span class="w-7 h-7 md:w-8 md:h-8 bg-brand text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">5</span><span class="font-medium text-xs md:text-sm" data-i18n="step_5">Рост</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact -->
+  <section id="contact" class="py-20 px-6">
+   <div class="max-w-3xl mx-auto fade-up text-center">
+    <h2 class="text-3xl font-bold mb-4 text-gray-900" data-i18n="contact_title">Давайте работать вместе</h2>
+    <p class="text-gray-500 mb-10" data-i18n="contact_subtitle">Оставьте свои данные и мы свяжемся с вами в течение 24 часов</p>
+    <form id="lead-form" class="max-w-md mx-auto mb-10">
+     <div class="space-y-4"><input id="form-name" type="text" placeholder="Ваше имя" required class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand focus:outline-none transition text-sm" data-placeholder-i18n="placeholder_name"> <input id="form-phone" type="tel" placeholder="Номер телефона" required class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-brand focus:outline-none transition text-sm" data-placeholder-i18n="placeholder_phone"> <label for="form-name" class="sr-only" data-i18n="label_name">Имя</label> <label for="form-phone" class="sr-only" data-i18n="label_phone">Телефон</label>
+     </div><button type="submit" id="submit-btn" class="btn-primary w-full mt-6 py-4 rounded-xl font-semibold text-base" data-i18n="btn_send">Отправить заявку</button>
+     <p id="form-message" class="mt-4 text-sm hidden"></p>
+    </form>
+    <div class="flex flex-wrap justify-center gap-4"><a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-medium transition hover:-translate-y-1"> <i data-lucide="message-circle" class="w-5 h-5"></i> <span data-i18n="btn_whatsapp">Написать в WhatsApp</span> </a> <a href="https://www.instagram.com/smm_kadr" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-medium transition hover:-translate-y-1"> <i data-lucide="instagram" class="w-5 h-5"></i> <span data-i18n="btn_instagram">Перейти в Instagram</span> </a>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 px-6">
+   <div class="max-w-5xl mx-auto flex flex-wrap justify-between items-center gap-6">
+    <div>
+     <div class="text-white font-bold text-xl mb-2">
+      SMM_KADR
+     </div>
+     <p class="text-sm" data-i18n="footer_tagline">Маркетинг, который приводит клиентов</p>
+    </div>
+    <div class="text-sm space-y-1">
+     <p>📱 <a href="tel:+996503030018" class="hover:text-white transition">+996 503 030 018</a></p>
+     <p>📸 <a href="https://www.instagram.com/smm_kadr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">@smm_kadr</a></p>
+    </div>
+   </div>
+  </footer>
+  <script>
+  // Full Trilingual Translations
+  const translations = {
+    ru: {
+      nav_about: "О нас",
+      nav_services: "Услуги",
+      nav_pricing: "Тарифы",
+      nav_team: "Команда",
+      nav_reviews: "Отзывы",
+      nav_contact: "Контакты",
+      nav_consult: "Консультация",
+      btn_consult: "Получить консультацию",
+      btn_cases: "Смотреть услуги",
+      about_title: "О SMM_KADR",
+      about_mission: "Наша миссия",
+      about_stats: "Наши цифры",
+      about_text: "Мы полнопрофильная команда маркетологов, которая занимается всем: от разработки стратегии и создания контента до рекламной кампании и роста. Доставляем реальные результаты бизнеса.",
+      stat_clients: "Успешных клиентов",
+      stat_videos: "Видео создано",
+      about_what: "Что мы делаем?",
+      about_what_desc: "Стратегия → Контент → Реклама",
+      about_for: "Для кого?",
+      about_for_desc: "Бизнес, которому нужны клиенты",
+      about_result: "Результат?",
+      about_result_desc: "Доказанный рост продаж",
+      services_title: "Наши услуги",
+      service1: "Видео продакшн",
+      service1_desc: "Профессиональные видео, которые превращают зрителей в клиентов",
+      service2: "Таргет реклама",
+      service2_desc: "Точный таргетинг аудитории для максимального ROI",
+      service3: "Стратегия",
+      service3_desc: "Стратегии маркетинга, основанные на данных и адаптированные под вашу аудиторию",
+      service4: "Ведение соцсетей",
+      service4_desc: "Полное управление вашим присутствием в социальных сетях",
+      service5: "Дизайн",
+      service5_desc: "Визуалы, которые укрепляют вашу фирменный стиль",
+      service6: "Аналитика",
+      service6_desc: "Отслеживание, измерение и масштабирование вашего успеха",
+      pricing_title: "Тарифы",
+      pricing_subtitle: "Выберите тариф, который подходит вам",
+      pricing_monthly: "Месячные",
+      pricing_onetime: "Разовые",
+      plan_standard: "СТАНДАРТ",
+      plan_advanced: "РАСШИРЕННЫЙ",
+      plan_basic: "БАЗОВЫЙ",
+      plan_pro: "ПРОДВИНУТЫЙ",
+      price_som: " сом/мес",
+      plan_std_1: "7 видео в месяц",
+      plan_std_2: "Команда маркетологов",
+      plan_std_3: "Видеограф",
+      plan_std_4: "Амбассадор",
+      plan_std_5: "Таргет-специалист",
+      plan_std_6: "Менеджер + Контент",
+      plan_adv_1: "Все в Стандарте",
+      plan_adv_2: "Сторимейкер",
+      plan_adv_3: "Графический дизайнер",
+      plan_adv_4: "Расширенный контент-план",
+      plan_adv_5: "Приоритетная поддержка",
+      plan_basic_desc: "Разовой пакет услуг для быстрых проектов и отдельных поставок.",
+      plan_pro_desc: "Расширенный разовый пакет с дополнительными услугами и приоритетной обработкой.",
+      label_popular: "Популярный",
+      btn_choose: "Выбрать",
+      btn_start: "Начать",
+      team_title: "Наша команда",
+      team_member_1: "Begimay Boronbaeva",
+      team_role_1: "Менеджер",
+      team_desc_1: "Работа с клиентами",
+      team_member_2: "Ramil Kadyrov",
+      team_role_2: "Руководитель",
+      team_desc_2: "Стратегия и управление",
+      team_member_3: "Тариель",
+      team_role_3: "Монтажер",
+      team_desc_3: "Правая рука руководителя",
+      team_member_4: "Эржан",
+      team_role_4: "Таргетолог",
+      team_desc_4: "Таргет и съемка",
+      team_member_5: "Сайкал",
+      team_role_5: "Оператор",
+      team_desc_5: "Монтаж и съемка",
+      team_member_6: "Актан",
+      team_role_6: "Монтажер",
+      team_desc_6: "Профессионал, обучает",
+      team_member_7: "Арсен",
+      team_role_7: "Руководство",
+      team_desc_7: "Планирование и контроль",
+      team_member_8: "Асема",
+      team_role_8: "Помощник менеджера",
+      team_desc_8: "Координация проектов",
+      cases_title: "Наши результаты",
+      case1: "Увеличение охвата",
+      case1_detail: "Сеть ресторанов — 3 месяца",
+      case2: "Генерация лидов",
+      case2_detail: "Салон красоты — 2 месяца",
+      case3: "Рост подписчиков",
+      case3_detail: "Fashion бренд — 4 месяца",
+      reviews_title: "Отзывы клиентов",
+      add_review: "Оставить отзыв",
+      submit_review: "Отправить",
+      process_title: "Как мы работаем",
+      step_1: "Анализ",
+      step_2: "Стратегия",
+      step_3: "Съемка",
+      step_4: "Реклама",
+      step_5: "Рост",
+      contact_title: "Давайте работать вместе",
+      contact_subtitle: "Оставьте свои данные и мы свяжемся с вами в течение 24 часов",
+      btn_send: "Отправить заявку",
+      btn_whatsapp: "Написать в WhatsApp",
+      btn_instagram: "Перейти в Instagram",
+      placeholder_name: "Ваше имя",
+      placeholder_phone: "Номер телефона",
+      placeholder_review: "Ваш отзыв",
+      label_name: "Имя",
+      label_phone: "Телефон",
+      footer_tagline: "Маркетинг, который приводит клиентов"
+    },
+    en: {
+      nav_about: "About",
+      nav_services: "Services",
+      nav_pricing: "Pricing",
+      nav_team: "Team",
+      nav_reviews: "Reviews",
+      nav_contact: "Contact",
+      nav_consult: "Consultation",
+      btn_consult: "Get Consultation",
+      btn_cases: "View Services",
+      about_title: "About SMM_KADR",
+      about_mission: "Our Mission",
+      about_stats: "Our Numbers",
+      about_text: "We are a full-cycle marketing team that handles everything from strategy and content creation to advertising and growth. We deliver real business results.",
+      stat_clients: "Satisfied Clients",
+      stat_videos: "Videos Created",
+      about_what: "What do we do?",
+      about_what_desc: "Strategy → Content → Advertising",
+      about_for: "Who is it for?",
+      about_for_desc: "Businesses that need clients",
+      about_result: "Result?",
+      about_result_desc: "Proven sales growth",
+      services_title: "Our Services",
+      service1: "Video Production",
+      service1_desc: "Professional videos that convert viewers into customers",
+      service2: "Targeted Ads",
+      service2_desc: "Precise audience targeting for maximum ROI",
+      service3: "Strategy",
+      service3_desc: "Data-driven marketing strategies tailored to your goals",
+      service4: "Social Media",
+      service4_desc: "Complete management of your social presence",
+      service5: "Design",
+      service5_desc: "Stunning visuals that strengthen your brand",
+      service6: "Analytics",
+      service6_desc: "Track, measure, and scale your success",
+      pricing_title: "Pricing",
+      pricing_subtitle: "Choose the plan that fits your needs",
+      pricing_monthly: "Monthly",
+      pricing_onetime: "One-time",
+      plan_standard: "STANDARD",
+      plan_advanced: "ADVANCED",
+      plan_basic: "BASIC",
+      plan_pro: "PRO",
+      price_som: " som/mo",
+      plan_std_1: "7 videos per month",
+      plan_std_2: "Marketing team",
+      plan_std_3: "Videographer",
+      plan_std_4: "Ambassador",
+      plan_std_5: "Targeting specialist",
+      plan_std_6: "Manager + Content",
+      plan_adv_1: "Everything in Standard",
+      plan_adv_2: "Story maker",
+      plan_adv_3: "Graphic designer",
+      plan_adv_4: "Extended content plan",
+      plan_adv_5: "Priority support",
+      plan_basic_desc: "One-time service package for quick projects and deliverables.",
+      plan_pro_desc: "Extended one-time package with extra services and priority processing.",
+      label_popular: "Popular",
+      btn_choose: "Choose",
+      btn_start: "Get Started",
+      team_title: "Our Team",
+      team_member_1: "Begimay Boronbaeva",
+      team_role_1: "Manager",
+      team_desc_1: "Client relations",
+      team_member_2: "Ramil Kadyrov",
+      team_role_2: "Head of Agency",
+      team_desc_2: "Strategy & leadership",
+      team_member_3: "Tariel",
+      team_role_3: "Video Editor",
+      team_desc_3: "Right hand to leadership",
+      team_member_4: "Erzhan",
+      team_role_4: "Targeting Specialist",
+      team_desc_4: "Ads & shooting",
+      team_member_5: "Saikal",
+      team_role_5: "Operator",
+      team_desc_5: "Editing & shooting",
+      team_member_6: "Aktan",
+      team_role_6: "Video Editor",
+      team_desc_6: "Professional, mentors",
+      team_member_7: "Arsen",
+      team_role_7: "Leadership",
+      team_desc_7: "Planning & control",
+      team_member_8: "Asema",
+      team_role_8: "Manager Assistant",
+      team_desc_8: "Project coordination",
+      cases_title: "Our Results",
+      case1: "Reach increase",
+      case1_detail: "Restaurant chain — 3 months",
+      case2: "Lead generation",
+      case2_detail: "Beauty salon — 2 months",
+      case3: "Followers growth",
+      case3_detail: "Fashion brand — 4 months",
+      reviews_title: "What Clients Say",
+      add_review: "Leave a Review",
+      submit_review: "Submit",
+      process_title: "How We Work",
+      step_1: "Analysis",
+      step_2: "Strategy",
+      step_3: "Shooting",
+      step_4: "Ads",
+      step_5: "Growth",
+      contact_title: "Let's Work Together",
+      contact_subtitle: "Leave your details and we'll get back to you within 24 hours",
+      btn_send: "Send Request",
+      btn_whatsapp: "Chat on WhatsApp",
+      btn_instagram: "Visit Instagram",
+      placeholder_name: "Your name",
+      placeholder_phone: "Phone number",
+      placeholder_review: "Your review",
+      label_name: "Name",
+      label_phone: "Phone",
+      footer_tagline: "Marketing that brings clients"
+    },
+    ky: {
+      nav_about: "Биз жөнүндө",
+      nav_services: "Кызматтар",
+      nav_pricing: "Баа",
+      nav_team: "Команда",
+      nav_reviews: "Отзывдор",
+      nav_contact: "Байланыш",
+      nav_consult: "Консультация",
+      btn_consult: "Консультация алу",
+      btn_cases: "Кызматтарды көрүү",
+      about_title: "SMM_KADR жөнүндө",
+      about_mission: "Биздин миссия",
+      about_stats: "Биздин сандар",
+      about_text: "Биз бүтүндөй маркетинг команда болуп, стратегиялоо жана контент түзүүдөн баштап жарнамасы жана өсүшүнө чейин баарын башкарабыз. Нактоо бизнес натыйжаларын берүүнү доставляем.",
+      stat_clients: "Ийгилүү кlientтер",
+      stat_videos: "Видео түзүлгөн",
+      about_what: "Биз эмне кылабыз?",
+      about_what_desc: "Стратегия → Контент → Жарнама",
+      about_for: "Кимге?",
+      about_for_desc: "Klientтерге зарыл болгон бизнес",
+      about_result: "Натыйжа?",
+      about_result_desc: "Далилденген сатуу өсүшү",
+      services_title: "Биздин кызматтар",
+      service1: "Видео продакшон",
+      service1_desc: "Көрүүчүлөрдү кlientтерге айландырган кесипке лайык видеолор",
+      service2: "Максат жарнамалар",
+      service2_desc: "Эң жогорку ROI үчүн так аудиторияны белгилөө",
+      service3: "Стратегия",
+      service3_desc: "Сизиңиз максаттарына ылайыкташтырылган маалыматка негизделген маркетинг стратегиялары",
+      service4: "Социалдык медиа",
+      service4_desc: "Сизиңиз социалдык медиа болушуңузду толук башкаруу",
+      service5: "Дизайн",
+      service5_desc: "Сизиңиз брендин бекемдеген жекелеген визуалдар",
+      service6: "Аналитика",
+      service6_desc: "Сизиңиз ийгилигин байкоо, өлчөө жана масштабдоо",
+      pricing_title: "Баа",
+      pricing_subtitle: "Сизге ылайыктуу планды тандаңыз",
+      pricing_monthly: "Айлык",
+      pricing_onetime: "Бир жолу",
+      plan_standard: "СТАНДАРТ",
+      plan_advanced: "КЕҢЕЙТИЛГЕН",
+      plan_basic: "БАЗАЛЫК",
+      plan_pro: "ПРОФЕССИОНАЛ",
+      price_som: " сом/ай",
+      plan_std_1: "Айына 7 видео",
+      plan_std_2: "Маркетинг команда",
+      plan_std_3: "Видеографер",
+      plan_std_4: "Элчи",
+      plan_std_5: "Максат-экспертизи",
+      plan_std_6: "Менеджер + Контент",
+      plan_adv_1: "Стандартта баарысы",
+      plan_adv_2: "Окуя жасагыч",
+      plan_adv_3: "Графикалык дизайнер",
+      plan_adv_4: "Кеңейтилген контент-план",
+      plan_adv_5: "Приоритет колдоо",
+      plan_basic_desc: "Тез долбооларга жана жекелеген узатмалордуна багыт берүүчү бир жолу кызмат пакети.",
+      plan_pro_desc: "Кошумча кызматтар жана приоритет иштеп чыгуу менен кеңейтилген бир жолу пакет.",
+      label_popular: "Популярдуу",
+      btn_choose: "Тандаңыз",
+      btn_start: "Баштаңыз",
+      team_title: "Биздин команда",
+      team_member_1: "Begimay Boronbaeva",
+      team_role_1: "Менеджер",
+      team_desc_1: "Klienttер менен иштөө",
+      team_member_2: "Ramil Kadyrov",
+      team_role_2: "Агенттик башчысы",
+      team_desc_2: "Стратегия жана көндүк",
+      team_member_3: "Тариель",
+      team_role_3: "Видео редактору",
+      team_desc_3: "Лидердин оң колу",
+      team_member_4: "Эржан",
+      team_role_4: "Максат-экспертизи",
+      team_desc_4: "Жарнамалар жана түгүндөө",
+      team_member_5: "Сайкал",
+      team_role_5: "Оператор",
+      team_desc_5: "Редакция жана түгүндөө",
+      team_member_6: "Актан",
+      team_role_6: "Видео редактору",
+      team_desc_6: "Профессионал, окутат",
+      team_member_7: "Арсен",
+      team_role_7: "Көндүк",
+      team_desc_7: "Планирование жана контроль",
+      team_member_8: "Асема",
+      team_role_8: "Менеджер жардамчысы",
+      team_desc_8: "Долбоо координациясы",
+      cases_title: "Биздин натыйжалар",
+      case1: "Чектүүлүктүн көбөйүшү",
+      case1_detail: "Ресторан чебиси — 3 ай",
+      case2: "Лид өндүрүшү",
+      case2_detail: "Сулуулук салону — 2 ай",
+      case3: "Жарапчылардын өсүшү",
+      case3_detail: "Fashion бренди — 4 ай",
+      reviews_title: "Klienttердин айтуусу",
+      add_review: "Отзыв калтыруу",
+      submit_review: "Жөнөтүү",
+      process_title: "Биз кантип иштейбиз",
+      step_1: "Анализ",
+      step_2: "Стратегия",
+      step_3: "Түгүндөө",
+      step_4: "Жарнамалар",
+      step_5: "Өсүш",
+      contact_title: "Бирге иштей турган болсок",
+      contact_subtitle: "Сизиңиз маалыматтарын калтырыңыз жана биз 24 саатта сиз менен байланышабыз",
+      btn_send: "Сурамчылыкты жөнөтүү",
+      btn_whatsapp: "WhatsApp'та жазыңыз",
+      btn_instagram: "Instagram'га барыңыз",
+      placeholder_name: "Сизиңиз аты",
+      placeholder_phone: "Телефон номери",
+      placeholder_review: "Сизиңиз отзыву",
+      label_name: "Аты",
+      label_phone: "Телефон",
+      footer_tagline: "Klienttерди алып келген маркетинг"
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'ru';
+  let currentRating = 0;
+  let allReviews = JSON.parse(localStorage.getItem('smm_reviews')) || [];
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    updateTranslations();
+    localStorage.setItem('lang', lang);
+  }
+
+  function updateTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[currentLang][key]) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = translations[currentLang][key];
+        } else {
+          el.textContent = translations[currentLang][key];
+        }
+      }
+    });
+  }
+
+  function setRating(rating) {
+    currentRating = rating;
+    document.querySelectorAll('.star').forEach((star, idx) => {
+      star.style.opacity = idx < rating ? '1' : '0.3';
+    });
+  }
+
+  function submitReview() {
+    const name = document.getElementById('review-name').value.trim();
+    const text = document.getElementById('review-text').value.trim();
+    if (!name || !text || currentRating === 0) {
+      const msg = currentLang === 'ru' ? 'Заполните все поля' : currentLang === 'en' ? 'Fill all fields' : 'Бардык талааларды толтуруңуз';
+      alert(msg);
+      return;
+    }
+    const review = {
+      id: Date.now(),
+      name,
+      text,
+      rating: currentRating,
+      date: new Date().toLocaleDateString(currentLang === 'ru' ? 'ru' : 'en')
+    };
+    allReviews.unshift(review);
+    localStorage.setItem('smm_reviews', JSON.stringify(allReviews));
+    document.getElementById('review-name').value = '';
+    document.getElementById('review-text').value = '';
+    currentRating = 0;
+    document.querySelectorAll('.star').forEach(s => s.style.opacity = '0.3');
+    loadReviews();
+  }
+
+  function loadReviews() {
+    const container = document.getElementById('reviews-container');
+    container.innerHTML = allReviews.map(r => `
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <p class="font-semibold text-sm">${r.name}</p>
+            <p class="text-xs text-gray-400">${r.date}</p>
+          </div>
+          <div class="flex gap-0.5">
+            ${[...Array(5)].map((_, i) => `<span class="star" style="opacity: ${i < r.rating ? '1' : '0.3'}">★</span>`).join('')}
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm">"${r.text}"</p>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('lang-select').addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+  });
+
+  document.getElementById('lead-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('form-message');
+    const name = document.getElementById('form-name').value.trim();
+    const phone = document.getElementById('form-phone').value.trim();
+    if (!name || !phone) return;
+
+    btn.disabled = true;
+    const sendingText = currentLang === 'ru' ? 'Отправка...' : currentLang === 'en' ? 'Sending...' : 'Жөнөтүлүүдө...';
+    btn.textContent = sendingText;
+    const result = await window.dataSdk.create({
+      name,
+      lead_phone: phone,
+      submitted_at: new Date().toISOString(),
+      is_review: false
+    });
+    if (result.isOk) {
+      const successText = currentLang === 'ru' ? '✓ Заявка отправлена! Мы свяжемся с вами.' : currentLang === 'en' ? '✓ Request sent! We will contact you soon.' : '✓ Сурамчылык жөнөтүлдү! Биз сиз менен байланышабыз.';
+      msg.textContent = successText;
+      msg.className = 'mt-4 text-sm text-green-600';
+      msg.classList.remove('hidden');
+      document.getElementById('form-name').value = '';
+      document.getElementById('form-phone').value = '';
+    } else {
+      const errorText = currentLang === 'ru' ? 'Ошибка. Напишите в WhatsApp' : currentLang === 'en' ? 'Error. Please use WhatsApp' : 'Ката. WhatsApp колдонуңуз';
+      msg.textContent = errorText;
+      msg.className = 'mt-4 text-sm text-red-500';
+      msg.classList.remove('hidden');
+    }
+    btn.disabled = false;
+    btn.textContent = translations[currentLang].btn_send;
+  });
+
+  function togglePricing(type) {
+    const monthly = document.getElementById('pricing-monthly');
+    const onetime = document.getElementById('pricing-onetime');
+    const btnM = document.getElementById('toggle-monthly');
+    const btnO = document.getElementById('toggle-onetime');
+    if (type === 'monthly') {
+      monthly.classList.remove('hidden');
+      onetime.classList.add('hidden');
+      btnM.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all toggle-active';
+      btnO.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all toggle-inactive';
+    } else {
+      onetime.classList.remove('hidden');
+      monthly.classList.add('hidden');
+      btnO.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all toggle-active';
+      btnM.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all toggle-inactive';
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const defaultConfig = {
+    hero_title: 'Маркетинг, который приводит клиентов,<br>а не просто лайки',
+    hero_subtitle: 'Полная команда маркетологов от 65 000 сом/месяц',
+    about_text: 'Мы полнопрофильная команда маркетологов, которая занимается всем: от разработки стратегии и создания контента до рекламной кампании и роста. Доставляем реальные результаты бизнеса.'
+  };
+
+  function applyConfig(config) {
+    document.getElementById('hero-title').innerHTML = config.hero_title || defaultConfig.hero_title;
+    document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+    document.getElementById('about-text').textContent = config.about_text || defaultConfig.about_text;
+  }
+
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => { applyConfig(config); },
+    mapToCapabilities: (config) => ({
+      recolorables: [],
+      borderables: [],
+      fontEditable: undefined,
+      fontSizeable: undefined
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['hero_title', config.hero_title || defaultConfig.hero_title],
+      ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+      ['about_text', config.about_text || defaultConfig.about_text]
+    ])
+  });
+
+  const dataHandler = {
+    onDataChanged(data) {}
+  };
+
+  async function initApp() {
+    document.getElementById('lang-select').value = currentLang;
+    setLanguage(currentLang);
+    loadReviews();
+    const result = await window.dataSdk.init(dataHandler);
+    if (!result.isOk) console.error('Data SDK init failed');
+  }
+
+  lucide.createIcons();
+  initApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f43f63ee79f25bc',t:'MTc3NzUyNTAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
