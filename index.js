@@ -323,7 +323,7 @@ const team = [
   {name:'Айтбек Токтогулович', role:'Основатель', img:'/Team/img/aitbek.png'},
   {name:'Рамиль Кадыров', role:'Директор', img:'/Team/img/ramil.jpeg'},
   {name:'Эржан Алкожоев', role:'Заместитель директора', img:'/Team/img/erzhan.png'},
-  {name:'Бегимай', role:'РОП', img:'/Team/begimay.jpeg'},
+  {name:'Бегимай', role:'РОП', img:'/Team/img/begimay.jpeg'},
   {name:'Элдар Торокулов', role:'Финансовый директор', img:'/Team/img/eldar.png'},
   {name:'Асема Исмаилбекова', role:'Менеджер', img:'/Team/img/asema.png'},
   {name:'Артур Ибрагимов', role:'Амбассадор', img:'/Team/img/artur.jpeg'},
