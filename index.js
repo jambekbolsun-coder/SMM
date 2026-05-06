@@ -226,6 +226,46 @@ const packageDetails = {
   basic: { title: 'БАЗОВЫЙ', price: '12 500 сом', features: ['Полный набор команды', 'Однодневная съёмка', 'Базовый монтаж', 'Основная обработка', 'Простая стратегия'] },
   advanced: { title: 'ПРОДВИНУТЫЙ', price: '15 000 сом', features: ['Расширенная съёмка', 'Профессиональный монтаж', 'Color grading', 'Саундтрак + эффекты', 'Полная маркетинговая стратегия'] }
 };
+function openTeamModal() {
+  const html = `
+    <div class="bg-white w-full h-full overflow-auto p-6 md:p-10 relative">
+
+      <!-- Кнопка закрытия -->
+      <button onclick="closeModal()" 
+        class="absolute top-6 right-6 bg-gray-200 hover:bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center">
+        ✕
+      </button>
+
+      <!-- Заголовок -->
+      <h2 class="text-3xl font-bold text-center mb-10">Наша команда</h2>
+
+      <!-- Сетка команды -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        ${team.map(m => `
+          <div class="team-card">
+            <img src="${m.img}" alt="${m.name}">
+            <div class="team-overlay">
+              <div class="team-info">
+                <div class="team-name">${m.name}</div>
+                <div class="team-role">${m.role}</div>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+    </div>
+  `;
+
+  const modal = document.getElementById('modalOverlay');
+  const content = document.getElementById('modalContent');
+
+  content.innerHTML = html;
+  modal.classList.add('open');
+
+  // чтобы иконки обновились
+  setTimeout(() => lucide.createIcons(), 100);
+}
 
 function openPackageModal(pkg) {
   const detail = packageDetails[pkg];
@@ -280,25 +320,24 @@ function closeModal() {
 
 // Team
 const team = [
-  {name:'Айтбек Токтогулович', role:'Основатель', img:'team/aitbek.png'},
-  {name:'Рамиль Кадыров', role:'Директор', img:'team/ramil.jpeg'},
-  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'team/erzhan.png'},
-  {name:'Бегимай', role:'РОП', img:'team/begimay.jpeg'},
-  {name:'Элдар Торокулов', role:'Финансовый директор', img:'team/eldar.png'},
-  {name:'Асема Исмаилбекова', role:'Менеджер', img:'team/asema.png'},
-  {name:'Артур Ибрагимов', role:'Амбассадор', img:'team/artur.jpeg'},
-  {name:'Гюзель', role:'Амбассадор', img:'team/guzel.jpeg'},
-  {name:'Салима', role:'Амбассадор', img:'team/salima.jpeg'},
-  {name:'Эрлан', role:'Амбассадор', img:'team/erlan.png'},
-  {name:'Ажыманова Даяна', role:'Амбассадор', img:'team/dayana.jpg'},
-  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'team/tariel.png'},
-  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'team/arsen.png'},
-  {name:'Актан', role:'Мобилограф', img:'team/aktan.PNG'},
-  {name:'Сайкал', role:'Мобилограф', img:'team/saikal.jpeg'},
-  {name:'Сайкал', role:'Мобилограф', img:'team/saikal.jpeg'},
-  {name:'Даткайым', role:'Мобилограф', img:'team/datkaiym.png'},
-  {name:'Бекболот', role:'Мобилограф', img:'team/bekbolot.jpeg'},
-  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'team/me.png'}
+  {name:'Айтбек Токтогулович', role:'Основатель', img:'/Team/aitbek.png'},
+  {name:'Рамиль Кадыров', role:'Директор', img:'/Team/ramil.jpeg'},
+  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'/Team/erzhan.png'},
+  {name:'Бегимай', role:'РОП', img:'/Team/begimay.jpeg'},
+  {name:'Элдар Торокулов', role:'Финансовый директор', img:'/Team/eldar.png'},
+  {name:'Асема Исмаилбекова', role:'Менеджер', img:'/Team/asema.png'},
+  {name:'Артур Ибрагимов', role:'Амбассадор', img:'/Team/artur.jpeg'},
+  {name:'Гюзель', role:'Амбассадор', img:'/Team/guzel.jpeg'},
+  {name:'Салима', role:'Амбассадор', img:'/Team/salima.jpeg'},
+  {name:'Эрлан', role:'Амбассадор', img:'/Team/erlan.png'},
+  {name:'Ажыманова Даяна', role:'Амбассадор', img:'/Team/dayana.jpg'},
+  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'/Team/tariel.png'},
+  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'/Team/arsen.png'},
+  {name:'Актан', role:'Мобилограф', img:'/Team/aktan.PNG'},
+  {name:'Сайкал', role:'Мобилограф', img:'/Team/saikal.jpeg'},
+  {name:'Даткайым', role:'Мобилограф', img:'/Team/datkaiym.png'},
+  {name:'Бекболот', role:'Мобилограф', img:'/Team/bekbolot.jpeg'},
+  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'/Team/me.png'}
 ];
 function renderTeam(){
   document.getElementById('teamGrid').innerHTML = team.map(m => `
@@ -383,20 +422,126 @@ function incrementViews(){
   });
 }
 
+
+
 // Chatbot
-function toggleChat(){ document.getElementById('chatbot').classList.toggle('open'); }
-function initChat(){
-  const t = translations[currentLang];
-  document.getElementById('chatMessages').innerHTML = `<div class="bg-blue-50 text-sm rounded-xl p-3 max-w-[80%] text-gray-700">${t.chat_welcome}</div>`;
-  const btns = document.getElementById('chatButtons');
-  btns.innerHTML = '';
-  [{k:'chat_q1',a:'chat_a1'},{k:'chat_q2',a:'chat_a2'},{k:'chat_q3',a:'chat_a3'},{k:'chat_q4',a:'chat_a4'},{k:'chat_q5',a:'chat_a5'}].forEach(q=>{
-    const b = document.createElement('button');
-    b.className = 'text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full hover:bg-primary/20 transition font-medium';
-    b.textContent = t[q.k];
-    b.onclick = ()=>{ const msgs = document.getElementById('chatMessages'); msgs.innerHTML+=`<div class="bg-gray-100 text-sm rounded-xl p-3 max-w-[80%] ml-auto text-gray-700">${t[q.k]}</div>`; setTimeout(()=>{ msgs.innerHTML+=`<div class="bg-blue-50 text-sm rounded-xl p-3 max-w-[80%] text-gray-700">${t[q.a]}</div>`; msgs.scrollTop=msgs.scrollHeight; },500); };
-    btns.appendChild(b);
-  });
+function toggleChat() {
+    const chat = document.getElementById('chatbot');
+
+    if (chat.classList.contains('open')) {
+        chat.classList.remove('open');
+    } else {
+        chat.classList.add('open');
+    }
+}
+function addMessage(text, isUser = false) {
+
+    const msgs = document.getElementById('chatMessages');
+
+    const div = document.createElement('div');
+
+    div.className = isUser
+        ? 'bg-gray-100 text-sm rounded-2xl p-3 max-w-[85%] ml-auto text-gray-700'
+        : 'bg-blue-50 text-sm rounded-2xl p-3 max-w-[85%] text-gray-700';
+
+    div.innerHTML = text;
+
+    msgs.appendChild(div);
+
+    msgs.scrollTop = msgs.scrollHeight;
+}
+
+function botAnswer(type) {
+
+    // сообщения пользователя
+    if(type === 'services') {
+
+        addMessage('📦 Пакеты', true);
+
+        setTimeout(() => {
+
+            addMessage(`
+                <b>Наши пакеты:</b>
+                <br><br>
+
+                🔹 СТАНДАРТ — 65 000 сом
+                <br>
+                8 видео + маркетинг + таргет
+                <br><br>
+
+                🔹 РАСШИРЕННЫЙ — 85 000 сом
+                <br>
+                Всё из стандартного + дизайнер + stories
+                <br><br>
+
+                🔹 БАЗОВЫЙ — 12 500 сом
+                <br>
+                Разовая съёмка
+                <br><br>
+
+                🔹 ПРОДВИНУТЫЙ — 15 000 сом
+                <br>
+                Full production
+                <br><br>
+
+                <button onclick="openWhatsApp()"
+                    class="mt-2 bg-green-500 text-white px-4 py-2 rounded-xl text-sm">
+                    Оставить заявку
+                </button>
+            `);
+
+        }, 500);
+    }
+
+    if(type === 'prices') {
+
+        addMessage('💰 Цены', true);
+
+        setTimeout(() => {
+
+            addMessage(`
+                💵 Стоимость услуг:
+                <br><br>
+
+                Стандарт — 65 000 сом
+                <br>
+                Расширенный — 85 000 сом
+                <br>
+                Базовый — 12 500 сом
+                <br>
+                Продвинутый — 15 000 сом
+            `);
+
+        }, 500);
+    }
+
+    if(type === 'address') {
+
+        addMessage('📍 Адрес', true);
+
+        setTimeout(() => {
+
+            addMessage(`
+                📍 Мы находимся:
+                <br><br>
+
+                Бишкек
+                <br>
+                проспект Шабдан Баатыра 87б
+            `);
+
+        }, 500);
+    }
+
+}
+
+function openWhatsApp() {
+
+    window.open(
+        'https://wa.me/996503030018',
+        '_blank'
+    );
+
 }
 
 // Scroll animations
