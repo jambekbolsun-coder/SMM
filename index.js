@@ -320,24 +320,24 @@ function closeModal() {
 
 // Team
 const team = [
-  {name:'Айтбек Токтогулович', role:'Основатель', img:'/Team/aitbek.png'},
-  {name:'Рамиль Кадыров', role:'Директор', img:'/Team/ramil.jpeg'},
-  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'/Team/erzhan.png'},
+  {name:'Айтбек Токтогулович', role:'Основатель', img:'/Team/img/aitbek.png'},
+  {name:'Рамиль Кадыров', role:'Директор', img:'/Team/img/ramil.jpeg'},
+  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'/Team/img/erzhan.png'},
   {name:'Бегимай', role:'РОП', img:'/Team/begimay.jpeg'},
-  {name:'Элдар Торокулов', role:'Финансовый директор', img:'/Team/eldar.png'},
-  {name:'Асема Исмаилбекова', role:'Менеджер', img:'/Team/asema.png'},
-  {name:'Артур Ибрагимов', role:'Амбассадор', img:'/Team/artur.jpeg'},
-  {name:'Гюзель', role:'Амбассадор', img:'/Team/guzel.jpeg'},
-  {name:'Салима', role:'Амбассадор', img:'/Team/salima.jpeg'},
-  {name:'Эрлан', role:'Амбассадор', img:'/Team/erlan.png'},
-  {name:'Ажыманова Даяна', role:'Амбассадор', img:'/Team/dayana.jpg'},
-  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'/Team/tariel.png'},
-  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'/Team/arsen.png'},
-  {name:'Актан', role:'Мобилограф', img:'/Team/aktan.PNG'},
-  {name:'Сайкал', role:'Мобилограф', img:'/Team/saikal.jpeg'},
-  {name:'Даткайым', role:'Мобилограф', img:'/Team/datkaiym.png'},
-  {name:'Бекболот', role:'Мобилограф', img:'/Team/bekbolot.jpeg'},
-  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'/Team/me.png'}
+  {name:'Элдар Торокулов', role:'Финансовый директор', img:'/Team/img/eldar.png'},
+  {name:'Асема Исмаилбекова', role:'Менеджер', img:'/Team/img/asema.png'},
+  {name:'Артур Ибрагимов', role:'Амбассадор', img:'/Team/img/artur.jpeg'},
+  {name:'Гюзель', role:'Амбассадор', img:'/Team/img/guzel.jpeg'},
+  {name:'Салима', role:'Амбассадор', img:'/Team/img/salima.jpeg'},
+  {name:'Эрлан', role:'Амбассадор', img:'/Team/img/erlan.png'},
+  {name:'Ажыманова Даяна', role:'Амбассадор', img:'/Team/img/dayana.jpg'},
+  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'/Team/img/tariel.png'},
+  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'/Team/img/arsen.png'},
+  {name:'Актан', role:'Мобилограф', img:'/Team/img/aktan.PNG'},
+  {name:'Сайкал', role:'Мобилограф', img:'/Team/img/saikal.jpeg'},
+  {name:'Даткайым', role:'Мобилограф', img:'/Team/img/datkaiym.png'},
+  {name:'Бекболот', role:'Мобилограф', img:'/Team/img/bekbolot.jpeg'},
+  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'/Team/img/me.png'}
 ];
 function renderTeam(){
   document.getElementById('teamGrid').innerHTML = team.map(m => `
