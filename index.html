@@ -10,6 +10,56 @@
   <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
+    .team-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+}
+
+.team-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.1);
+}
+
+.team-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: all 0.4s ease;
+}
+
+.team-info {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.team-card:hover .team-info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.team-name {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.team-role {
+  color: #d1d5db;
+  font-size: 12px;
+}
 html, body { height: 100%; margin: 0; font-family: 'Outfit', sans-serif; }
 body { overflow-x: hidden; background: #f8fafc; }
 .glass { background: rgba(255,255,255,0.12); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
@@ -44,7 +94,14 @@ body { overflow-x: hidden; background: #f8fafc; }
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); display: none; z-index: 2000;overflow: auto; animation: fadeIn 0.3s ease-out; }
 .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.modal-content { background: white; border-radius: 28px; padding: 40px; max-width: 500px; width: 90%; max-height: 80vh; animation: modalSlideIn 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 40px 80px rgba(0,0,0,0.2); }
+.modal-content {
+  background: transparent;
+  padding: 0;
+  max-width: 420px;
+  width: 92%;
+  max-height: 90vh;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
 @keyframes modalSlideIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 .star { cursor: pointer; transition: all 0.2s; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
@@ -364,7 +421,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
       <p class="text-gray-700 font-medium mb-4" data-i18n="footer_ready">Готовы начать?</p><a href="#contact" class="btn-primary bg-primary text-white px-7 py-2 rounded-full font-semibold hover:shadow-lg transition inline-block" data-i18n="footer_cta">Оставить заявку</a>
      </div>
      <div class="text-center text-sm text-gray-500 border-t border-gray-200 pt-8">
-      <p>© 2024 SMM_KADR. <span data-i18n="footer">Все права защищены.</span></p>
+      <p>© 2025 SMM_KADR. <span data-i18n="footer">Все права защищены.</span></p>
      </div>
     </div>
    </footer>
@@ -590,7 +647,7 @@ function switchLang(lang) {
 
 // Package details
 const packageDetails = {
-  standard: { title: 'СТАНДАРТ', price: '65 000 сом', features: ['7 видео в месяц', 'Отдел маркетинга', 'Мобилограф', 'Амбассадор', 'Таргетолог', 'Менеджер проекта', 'Контент и сценарии', 'Еженедельные отчёты'] },
+  standard: { title: 'СТАНДАРТ', price: '65 000 сом', features: ['8 видео в месяц', 'Отдел маркетинга', 'Мобилограф', 'Амбассадор', 'Таргетолог', 'Менеджер проекта', 'Контент и сценарии', 'Еженедельные отчёты'] },
   extended: { title: 'РАСШИРЕННЫЙ', price: '85 000 сом', features: ['Всё из стандартного пакета +', 'Сторисмейкер', 'Графический дизайнер (до 10 постов)', 'Приоритетная поддержка', 'Месячная стратегия'] },
   basic: { title: 'БАЗОВЫЙ', price: '12 500 сом', features: ['Полный набор команды', 'Однодневная съёмка', 'Базовый монтаж', 'Основная обработка', 'Простая стратегия'] },
   advanced: { title: 'ПРОДВИНУТЫЙ', price: '15 000 сом', features: ['Расширенная съёмка', 'Профессиональный монтаж', 'Color grading', 'Саундтрак + эффекты', 'Полная маркетинговая стратегия'] }
@@ -599,19 +656,51 @@ const packageDetails = {
 function openPackageModal(pkg) {
   const detail = packageDetails[pkg];
   const t = translations[currentLang];
+
   const html = `
-    <h2 class="text-2xl font-bold text-gray-900 mb-3">${detail.title}</h2>
-    <p class="text-3xl font-bold text-primary mb-6">${detail.price}</p>
-    <h3 class="font-semibold text-gray-900 mb-4">Что входит:</h3>
-    <ul class="space-y-3 mb-8">
-      ${detail.features.map(f => `<li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-primary flex-shrink-0"></i><span class="text-gray-700">${f}</span></li>`).join('')}
-    </ul>
-    <button onclick="closeModal()" class="w-full bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition mb-2">Закрыть</button>
-    <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="w-full block text-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition">Заказать</a>
+    <div class="max-w-md w-full bg-white rounded-3xl overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="px-8 pt-8 pb-6 text-center border-b">
+        <h2 class="text-3xl font-bold text-gray-900 mb-1">${detail.title}</h2>
+        <p class="text-4xl font-bold text-blue-600">${detail.price}</p>
+      </div>
+
+      <!-- Content -->
+      <div class="p-8">
+        <h3 class="font-semibold text-gray-800 mb-5 text-lg">Что входит:</h3>
+        <ul class="space-y-4">
+          ${detail.features.map(f => `
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+              </div>
+              <span class="text-gray-700 leading-relaxed">${f}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- Buttons -->
+      <div class="px-8 pb-8 pt-2 flex flex-col gap-3">
+        <a href="https://wa.me/996503030018" 
+           target="_blank" 
+           class="block text-center bg-emerald-500 hover:bg-emerald-600 transition-all text-white font-semibold py-4 rounded-2xl text-lg">
+          Заказать
+        </a>
+        
+        <button onclick="closeModal()" 
+                class="block text-center bg-gray-200 hover:bg-gray-300 transition-all text-gray-700 font-semibold py-4 rounded-2xl text-lg">
+          Закрыть
+        </button>
+      </div>
+    </div>
   `;
+
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('open');
-  lucide.createIcons();
+  
+  // Обновляем иконки
+  setTimeout(() => lucide.createIcons(), 100);
 }
 
 function closeModal() {
@@ -620,18 +709,40 @@ function closeModal() {
 
 // Team
 const team = [
-  {name:'Ramil Kadyrov',role:'Руководитель',icon:'crown'},
-  {name:'Begimay Boronbaeva',role:'Менеджер',icon:'clipboard-list'},
-  {name:'Tariel',role:'Монтаж',icon:'film'},
-  {name:'Erjan',role:'Таргет и съёмка',icon:'target'},
-  {name:'Saykal',role:'Монтаж и съёмка',icon:'camera'},
-  {name:'Aktan',role:'Проф монтаж',icon:'monitor'},
-  {name:'Arsen',role:'Стратегия',icon:'trending-up'},
-  {name:'Asema',role:'Помощница',icon:'heart'}
+  {name:'Айтбек Токтогулович', role:'Основатель', img:'team/aitbek.jpg'},
+  {name:'Рамиль Кадыров', role:'Директор', img:'team/ramil.jpeg'},
+  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'team/erzhan.jpeg'},
+  {name:'Бегимай', role:'РОП', img:'team/begimay.jpg'},
+  {name:'Элдар Торокулов', role:'Финансовый директор', img:'team/eldar.jpg'},
+  {name:'Асема Исмаилбекова', role:'Менеджер', img:'team/asema.jpg'},
+  {name:'Артур Ибрагимов', role:'Амбассадор', img:'team/artur.jpeg'},
+  {name:'Гюзель', role:'Амбассадор', img:'team/guzel.jpg'},
+  {name:'Салима', role:'Амбассадор', img:'team/salima.jpeg'},
+  {name:'Эрлан', role:'Амбассадор', img:'team/erlan.jpg'},
+  {name:'Ажыманова Даяна', role:'Амбассадор', img:'team/dayana.jpeg'},
+  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'team/tariel.jpg'},
+  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'team/arsen.jpg'},
+  {name:'Актан', role:'Мобилограф', img:'team/aktan.jpg'},
+  {name:'Сайкал', role:'Мобилограф', img:'team/saikal.jpg'},
+  {name:'Даткайым', role:'Мобилограф', img:'team/datkaiym.jpg'},
+  {name:'Бекболот', role:'Мобилограф', img:'team/bekbolot.jpg'},
+  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'team/me.jpg'}
 ];
 function renderTeam(){
-  document.getElementById('teamGrid').innerHTML = team.map(m=>`<div class="glass-white rounded-2xl p-6 text-center card-hover shadow-sm"><div class="w-14 h-14 bg-primary/10 rounded-full mx-auto mb-3 flex items-center justify-center"><i data-lucide="${m.icon}" class="w-6 h-6 text-primary"></i></div><h4 class="font-semibold text-sm">${m.name}</h4><p class="text-xs text-gray-500 mt-1">${m.role}</p></div>`).join('');
-  lucide.createIcons();
+  document.getElementById('teamGrid').innerHTML = team.map(m => `
+    <div class="team-card">
+      
+      <img src="${m.img}" alt="${m.name}">
+
+      <div class="team-overlay">
+        <div class="team-info">
+          <div class="team-name">${m.name}</div>
+          <div class="team-role">${m.role}</div>
+        </div>
+      </div>
+
+    </div>
+  `).join('');
 }
 
 // Reviews with Data SDK
