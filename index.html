@@ -9,105 +9,7 @@
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    .team-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #000;
-}
-
-.team-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.team-card:hover img {
-  transform: scale(1.1);
-}
-
-.team-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent 60%);
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
-  transition: all 0.4s ease;
-}
-
-.team-info {
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-
-.team-card:hover .team-info {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.team-name {
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.team-role {
-  color: #d1d5db;
-  font-size: 12px;
-}
-html, body { height: 100%; margin: 0; font-family: 'Outfit', sans-serif; }
-body { overflow-x: hidden; background: #f8fafc; }
-.glass { background: rgba(255,255,255,0.12); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
-.glass-white { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.7); }
-.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-.gradient-bg { background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 40%, #93c5fd 100%); }
-.glow { box-shadow: 0 0 60px rgba(37,99,235,0.3); }
-.card-hover { transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94); cursor: pointer; }
-.card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 48px rgba(37,99,235,0.12); }
-.btn-primary { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-.btn-primary:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(37,99,235,0.3); }
-.btn-instagram { background: linear-gradient(135deg, #a78bfa 0%, #d8a5d8 50%, #fca5a5 100%); }
-.btn-instagram:hover { background: linear-gradient(135deg, #c4b5fd 0%, #e9a8e8 50%, #fdcaca 100%); transform: scale(1.05); box-shadow: 0 12px 30px rgba(168,123,250,0.25); }
-.btn-whatsapp { background: #10b981; }
-.btn-whatsapp:hover { background: linear-gradient(135deg, #34d399 0%, #10b981 100%); transform: scale(1.05); box-shadow: 0 12px 30px rgba(16,185,129,0.3); }
-.section-divider { height: 2px; background: linear-gradient(90deg, transparent, rgba(37,99,235,0.15), transparent); }
-.whatsapp-float { position: fixed; bottom: 24px; right: 24px; z-index: 1000; width: 56px; height: 56px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(16,185,129,0.35); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-.whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 12px 36px rgba(16,185,129,0.45); }
-.chatbot { position: fixed; bottom: 90px; right: 24px; z-index: 999; width: 360px; max-height: 480px; border-radius: 24px; overflow: hidden; display: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: chatSlideIn 0.4s cubic-bezier(0.4,0,0.2,1); }
-.chatbot.open { display: flex; flex-direction: column; }
-@keyframes chatSlideIn { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.chat-toggle-btn { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-.chat-toggle-btn:hover { transform: scale(1.1); box-shadow: 0 8px 24px rgba(37,99,235,0.35); }
-.star { cursor: pointer; transition: all 0.2s; }
-.package-card { transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94); position: relative; overflow: hidden; }
-.package-card:before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1)); opacity: 0; transition: opacity 0.4s; }
-.package-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(37,99,235,0.15); }
-.package-card:hover:before { opacity: 1; }
-.package-popular { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #2563eb; position: relative; }
-.package-popular:before { background: linear-gradient(135deg, rgba(37,99,235,0.1), transparent); }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); display: none; z-index: 2000;overflow: auto; animation: fadeIn 0.3s ease-out; }
-.modal-overlay.open { display: flex; align-items: center; justify-content: center; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.modal-content {
-  background: transparent;
-  padding: 0;
-  max-width: 420px;
-  width: 92%;
-  max-height: 90vh;
-  animation: modalSlideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes modalSlideIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-.star { cursor: pointer; transition: all 0.2s; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
-.loading-pulse { animation: pulse 1.5s infinite; }
-.popular-badge { position: absolute; top: 15px; left: 20px; }
-  </style>
+<link rel="stylesheet" href="index.css">
   <script>
 tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1628' } } } }
 </script>
@@ -115,19 +17,16 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
  </head>
  <body class="h-full bg-white text-gray-900">
   <div id="app" class="w-full h-full overflow-auto">
-   <!-- Modal Overlay -->
    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
     <div id="modalContent" class="modal-content" onclick="event.stopPropagation()"></div>
-   </div><!-- Nav -->
-   <nav class="fixed top-0 w-full z-50 glass-white shadow-sm">
+   </div><nav class="fixed top-0 w-full z-50 glass-white shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
      <span class="text-xl font-bold text-primary">SMM_KADR</span>
      <div class="flex items-center gap-4">
       <select id="langSwitcher" onchange="switchLang(this.value)" class="bg-transparent border border-gray-200 rounded-lg px-3 py-1 text-sm font-medium focus:outline-none"> <option value="ru">RU</option> <option value="en">EN</option> <option value="kg">KG</option> </select> <a href="#contact" class="hidden sm:block bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition" data-i18n="nav_cta">Оставить заявку</a>
      </div>
     </div>
-   </nav><!-- Hero -->
-   <section class="gradient-bg w-full relative overflow-hidden" style="min-height: auto; padding: 100px 24px 60px;">
+   </nav><section class="gradient-bg w-full relative overflow-hidden" style="min-height: auto; padding: 100px 24px 60px;">
     <div class="absolute inset-0 overflow-hidden">
      <div class="absolute w-96 h-96 bg-blue-200 opacity-30 rounded-full blur-3xl -top-20 -right-20"></div>
      <div class="absolute w-72 h-72 bg-blue-100 opacity-20 rounded-full blur-3xl bottom-10 left-10"></div>
@@ -135,8 +34,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
     <div class="max-w-5xl mx-auto relative z-10 fade-in">
      <h1 id="heroTitle" class="text-5xl sm:text-7xl font-800 text-gray-900 mb-2 tracking-tight text-center">SMM_KADR</h1>
      <p id="heroSubtitle" class="text-lg sm:text-xl text-gray-600 mb-3 font-light text-center" data-i18n="hero_sub">Маркетинговая команда полного цикла</p>
-     <p id="heroTagline" class="text-lg text-gray-700 mb-10 font-medium text-center max-w-3xl mx-auto leading-relaxed" data-i18n="hero_tagline">Мы создаём маркетинг, который приносит реальные заявки и продажи бизнесу</p><!-- Quick cards -->
-     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+     <p id="heroTagline" class="text-lg text-gray-700 mb-10 font-medium text-center max-w-3xl mx-auto leading-relaxed" data-i18n="hero_tagline">Мы создаём маркетинг, который приносит реальные заявки и продажи бизнесу</p><div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
       <div class="glass-white rounded-2xl p-5 text-center card-hover">
        <div class="text-3xl mb-2">
         📈
@@ -165,12 +63,10 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
        </svg><span data-i18n="hero_btn2">WhatsApp</span></a>
      </div>
     </div>
-   </section><!-- About (Expanded) -->
-   <section class="py-24 px-6 fade-in bg-white">
+   </section><section class="py-24 px-6 fade-in bg-white">
     <div class="max-w-6xl mx-auto">
      <h2 class="text-4xl font-bold mb-6 text-gray-900 text-center" data-i18n="about_title">О нас</h2>
-     <p id="aboutIntro" class="text-lg text-gray-700 leading-relaxed text-center mb-6 max-w-3xl mx-auto" data-i18n="about_intro">SMM_KADR — это команда маркетологов полного цикла, которая объединяет специалистов в сфере контента, рекламы и стратегии. Мы работаем как единая система: от идеи до результата.</p><!-- Extended description -->
-     <div class="grid md:grid-cols-2 gap-6 mb-10 text-gray-600 text-sm leading-relaxed">
+     <p id="aboutIntro" class="text-lg text-gray-700 leading-relaxed text-center mb-6 max-w-3xl mx-auto" data-i18n="about_intro">SMM_KADR — это команда маркетологов полного цикла, которая объединяет специалистов в сфере контента, рекламы и стратегии. Мы работаем как единая система: от идеи до результата.</p><div class="grid md:grid-cols-2 gap-6 mb-10 text-gray-600 text-sm leading-relaxed">
       <div>
        <h4 class="font-semibold text-gray-900 mb-3">Что мы делаем:</h4>
        <ul class="space-y-2">
@@ -190,8 +86,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
        </ul>
       </div>
      </div>
-     <div class="section-divider my-10"></div><!-- Process steps -->
-     <div class="mb-12">
+     <div class="section-divider my-10"></div><div class="mb-12">
       <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center" data-i18n="about_process">Как мы работаем</h3>
       <div class="grid md:grid-cols-4 gap-4">
        <div class="glass-white rounded-2xl p-6 text-center">
@@ -223,8 +118,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
         <p class="text-sm text-gray-600">Анализ и оптимизация</p>
        </div>
       </div>
-     </div><!-- What you get -->
-     <div class="mb-12">
+     </div><div class="mb-12">
       <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center" data-i18n="about_get">Что вы получаете</h3>
       <div class="grid md:grid-cols-3 gap-6">
        <div class="glass-white rounded-2xl p-6"><i data-lucide="target" class="w-8 h-8 text-primary mb-3"></i>
@@ -240,8 +134,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
         <p class="text-sm text-gray-600">Еженедельная аналитика и результаты</p>
        </div>
       </div>
-     </div><!-- Why choose us -->
-     <div class="mb-12">
+     </div><div class="mb-12">
       <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center" data-i18n="about_why_title">Почему выбирают нас</h3>
       <div class="grid md:grid-cols-2 gap-6">
        <div class="flex gap-4">
@@ -277,8 +170,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
         </div>
        </div>
       </div>
-     </div><!-- Results -->
-     <div class="glass-white rounded-2xl p-8 text-center">
+     </div><div class="glass-white rounded-2xl p-8 text-center">
       <h3 class="text-2xl font-bold text-gray-900 mb-6" data-i18n="about_results">Результаты наших клиентов</h3>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
        <div>
@@ -298,8 +190,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
      <div class="flex flex-wrap justify-center gap-4 mt-10"><a href="#services" class="btn-primary bg-primary text-white px-7 py-3 rounded-full font-semibold hover:shadow-lg transition" data-i18n="about_cta1">Посмотреть тарифы</a> <a href="#contact" class="btn-primary glass-white text-primary px-7 py-3 rounded-full font-semibold hover:bg-white/60 transition" data-i18n="about_cta2">Получить консультацию</a>
      </div>
     </div>
-   </section><!-- Services -->
-   <section class="py-24 px-6 bg-gradient-to-b from-blue-50 to-white fade-in" id="services">
+   </section><section class="py-24 px-6 bg-gradient-to-b from-blue-50 to-white fade-in" id="services">
     <div class="max-w-6xl mx-auto">
      <h2 class="text-4xl font-bold text-center mb-12 text-gray-900" data-i18n="services_title">Пакеты услуг</h2>
      <h3 class="text-lg font-semibold mb-8 text-gray-700 text-center" data-i18n="monthly_title">📦 Месячные пакеты</h3>
@@ -362,26 +253,21 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
      <div class="flex flex-wrap justify-center gap-4"><a href="#contact" class="btn-primary bg-primary text-white px-7 py-3 rounded-full font-semibold hover:shadow-lg transition" data-i18n="services_cta1">Выбрать пакет</a> <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="btn-primary btn-whatsapp text-white px-7 py-3 rounded-full font-semibold hover:shadow-lg transition" data-i18n="services_cta2">Рассчитать стоимость</a>
      </div>
     </div>
-   </section><!-- Team -->
-   <section class="py-24 px-6 fade-in bg-white">
+   </section><section class="py-24 px-6 fade-in bg-white">
     <div class="max-w-6xl mx-auto">
      <h2 class="text-4xl font-bold text-center mb-12 text-gray-900" data-i18n="team_title">Наша команда</h2>
      <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="teamGrid"></div>
     </div>
-   </section><!-- Reviews -->
+   </section>
    <section class="py-24 px-6 bg-blue-50 fade-in" id="reviews">
-    <div class="max-w-4xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-4 text-gray-900" data-i18n="reviews_title">Отзывы</h2>
-     <p class="text-center text-gray-500 mb-10" id="reviewCount"></p>
-     <div id="reviewForm" class="glass-white rounded-2xl p-8 mb-10 shadow-md">
-      <h3 class="font-semibold mb-6 text-gray-900" data-i18n="review_add">Оставить отзыв</h3><input id="reviewName" class="w-full border border-gray-200 rounded-xl px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-primary transition" placeholder="Ваше имя" data-i18n-ph="review_name_ph"> <textarea id="reviewText" class="w-full border border-gray-200 rounded-xl px-4 py-3 mb-4 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-primary transition" placeholder="Ваш отзыв" data-i18n-ph="review_text_ph"></textarea>
-      <div class="flex items-center gap-3 mb-6"><span class="text-sm text-gray-600 font-medium" data-i18n="review_rating">Оценка:</span>
-       <div id="starSelect" class="flex gap-1"></div>
-      </div><button onclick="submitReview()" class="bg-primary text-white px-7 py-3 rounded-full font-semibold hover:bg-blue-700 transition" data-i18n="review_submit">Отправить</button> <span id="reviewLoading" class="ml-4 text-sm text-gray-400 hidden loading-pulse">Сохранение...</span>
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-4xl font-bold mb-6 text-gray-900" data-i18n="reviews_title">Наш адрес</h2>
+     <p class="text-lg text-gray-600 mb-8">проспект Шабдан Баатыра 87б</p>
+     <div class="rounded-2xl overflow-hidden shadow-md glass-white p-4">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.164808298711!2d74.6293775!3d42.8651811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7c569f52f31%3A0x6758be1ffc914e66!2sShabdan%20Baatyr%20Ave%2087b%2C%20Bishkek!5e0!3m2!1sen!2skg!4v1715065000000!5m2!1sen!2skg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl"></iframe>
      </div>
-     <div id="reviewsList" class="space-y-5 mb-12"></div>
     </div>
-   </section><!-- Contact -->
+   </section>
    <section class="py-24 px-6 gradient-bg fade-in" id="contact">
     <div class="max-w-2xl mx-auto text-center">
      <h2 class="text-4xl font-bold text-gray-900 mb-6" data-i18n="contact_title">Связаться с нами</h2>
@@ -392,8 +278,7 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
        </svg><span data-i18n="contact_wa">Написать в WhatsApp</span></a> <a href="https://www.instagram.com/smm_kadr" target="_blank" rel="noopener noreferrer" class="btn-primary btn-instagram text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition flex items-center gap-2"><i data-lucide="instagram" class="w-5 h-5"></i><span data-i18n="contact_ig">Перейти в Instagram</span></a>
      </div>
     </div>
-   </section><!-- Footer -->
-   <footer class="py-16 px-6 bg-gradient-to-b from-white to-gray-50 text-gray-600">
+   </section><footer class="py-16 px-6 bg-gradient-to-b from-white to-gray-50 text-gray-600">
     <div class="max-w-6xl mx-auto">
      <div class="grid md:grid-cols-3 gap-10 mb-10">
       <div>
@@ -425,498 +310,18 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
      </div>
     </div>
    </footer>
-  </div><!-- WhatsApp Float --> <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+  </div><a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
    <svg width="28" height="28" fill="white" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.616l4.532-1.474A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.337 0-4.542-.662-6.407-1.808l-.446-.27-2.87.933.956-2.836-.293-.465A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-   </svg></a> <!-- Chat Toggle Button --> <button onclick="toggleChat()" class="chat-toggle-btn fixed bottom-24 right-24 z-50 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
+   </svg></a> <button onclick="toggleChat()" class="chat-toggle-btn fixed bottom-24 right-24 z-50 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
   <div id="chatbot" class="chatbot glass-white shadow-2xl">
    <div class="bg-primary text-white p-4 flex justify-between items-center rounded-t-2xl"><span class="font-semibold">SMM_KADR Bot</span><button onclick="toggleChat()" class="text-white/80 hover:text-white transition"><i data-lucide="x" class="w-5 h-5"></i></button>
    </div>
    <div id="chatMessages" class="flex-1 overflow-auto p-4 space-y-3 bg-white" style="max-height:300px;"></div>
    <div id="chatButtons" class="p-3 border-t bg-gray-50 flex flex-wrap gap-2 rounded-b-2xl"></div>
+   <div id="chatbot" class="chatbot glass-white shadow-2xl open"></div>
   </div>
-  <script>
-// i18n
-const translations = {
-  ru: { 
-    nav_cta:'Оставить заявку', 
-    hero_sub:'Маркетинговая команда полного цикла', 
-    hero_tagline:'Мы создаём маркетинг, который приносит реальные заявки и продажи бизнесу',
-    hero_card1:'Рост продаж',
-    hero_card1_sub:'Реальные результаты за месяц',
-    hero_card2:'Таргет + стратегия',
-    hero_card2_sub:'От анализа до результата',
-    hero_card3:'Контент под ключ',
-    hero_card3_sub:'Идея, съёмка, монтаж, публикация',
-    hero_btn1:'Оставить заявку', 
-    hero_btn2:'WhatsApp', 
-    about_title:'О нас', 
-    about_intro:'SMM_KADR — это команда маркетологов полного цикла, которая объединяет специалистов в сфере контента, рекламы и стратегии. Мы работаем как единая система: от идеи до результата.',
-    about_process:'Как мы работаем',
-    about_get:'Что вы получаете',
-    about_get1:'Целевую аудиторию',
-    about_get2:'Рост показателей',
-    about_get3:'Прозрачные отчёты',
-    about_why_title:'Почему выбирают нас',
-    about_results:'Результаты наших клиентов',
-    about_cta1:'Посмотреть тарифы', 
-    about_cta2:'Получить консультацию',
-    services_title:'Пакеты услуг', 
-    monthly_title:'📦 Месячные пакеты', 
-    pkg_std:'СТАНДАРТ', 
-    pkg_ext:'РАСШИРЕННЫЙ', 
-    pkg_popular:'⭐ Самый популярный', 
-    pkg_best_choice:'Лучший выбор для роста', 
-    once_title:'🎬 Одноразовые услуги', 
-    pkg_base:'БАЗОВЫЙ', 
-    pkg_adv:'ПРОДВИНУТЫЙ', 
-    pkg_base_desc:'Полный набор команды (базовый пакет услуг)', 
-    pkg_adv_desc:'Расширенная съёмка, монтаж и маркетинг', 
-    pkg_click_detail:'Нажмите для подробнее', 
-    services_cta1:'Выбрать пакет', 
-    services_cta2:'Рассчитать стоимость', 
-    team_title:'Наша команда', 
-    reviews_title:'Отзывы', 
-    review_add:'Оставить отзыв', 
-    review_name_ph:'Ваше имя', 
-    review_text_ph:'Ваш отзыв', 
-    review_rating:'Оценка:', 
-    review_submit:'Отправить', 
-    contact_title:'Связаться с нами', 
-    contact_sub:'Готовы обсудить ваш проект? Напишите нам!', 
-    contact_wa:'Написать в WhatsApp', 
-    contact_ig:'Перейти в Instagram', 
-    footer:'Все права защищены.',
-    footer_text:'SMM_KADR — маркетинг, который работает',
-    footer_collab:'Мы открыты к сотрудничеству',
-    footer_links:'Быстрые ссылки',
-    footer_services:'Услуги',
-    footer_about:'О нас',
-    footer_contact:'Контакты',
-    footer_contact_title:'Контакты',
-    footer_ready:'Готовы начать?',
-    footer_cta:'Оставить заявку',
-    chat_welcome:'Привет! Чем могу помочь?', 
-    chat_q1:'Какие услуги?', 
-    chat_q2:'Цены', 
-    chat_q3:'Оставить заявку', 
-    chat_a1:'Мы предлагаем: SMM, таргет, съёмку, монтаж и стратегию.', 
-    chat_a2:'Стандарт — 65 000, Расширенный — 85 000, Базовый (разовый) — 12 500, Продвинутый — 15 000 сом.', 
-    chat_a3:'Напишите нам в WhatsApp: +996503030018' 
-  },
-  en: { 
-    nav_cta:'Get Started', 
-    hero_sub:'Full-cycle marketing team', 
-    hero_tagline:'We create marketing that brings real leads and sales to your business',
-    hero_card1:'Sales Growth',
-    hero_card1_sub:'Real results in a month',
-    hero_card2:'Targeting + Strategy',
-    hero_card2_sub:'From analysis to results',
-    hero_card3:'Full Content',
-    hero_card3_sub:'Idea, shooting, editing, posting',
-    hero_btn1:'Get Started', 
-    hero_btn2:'WhatsApp', 
-    about_title:'About Us', 
-    about_intro:'SMM_KADR is a full-cycle marketing team that brings together specialists in content, advertising and strategy. We work as a unified system: from idea to results.',
-    about_process:'How We Work',
-    about_get:'What You Get',
-    about_get1:'Target Audience',
-    about_get2:'Growth Metrics',
-    about_get3:'Transparent Reports',
-    about_why_title:'Why Choose Us',
-    about_results:'Our Client Results',
-    about_cta1:'View Packages', 
-    about_cta2:'Get Consultation',
-    services_title:'Service Packages', 
-    monthly_title:'📦 Monthly Packages', 
-    pkg_std:'STANDARD', 
-    pkg_ext:'EXTENDED', 
-    pkg_popular:'⭐ Most Popular', 
-    pkg_best_choice:'Best Choice for Growth', 
-    once_title:'🎬 One-time Services', 
-    pkg_base:'BASIC', 
-    pkg_adv:'ADVANCED', 
-    pkg_base_desc:'Full team set (basic package)', 
-    pkg_adv_desc:'Extended shooting, editing & marketing', 
-    pkg_click_detail:'Click for details', 
-    services_cta1:'Choose Package', 
-    services_cta2:'Calculate Cost', 
-    team_title:'Our Team', 
-    reviews_title:'Reviews', 
-    review_add:'Leave a Review', 
-    review_name_ph:'Your name', 
-    review_text_ph:'Your review', 
-    review_rating:'Rating:', 
-    review_submit:'Submit', 
-    contact_title:'Contact Us', 
-    contact_sub:'Ready to discuss your project? Write to us!', 
-    contact_wa:'Message on WhatsApp', 
-    contact_ig:'Go to Instagram', 
-    footer:'All rights reserved.',
-    footer_text:'SMM_KADR — marketing that works',
-    footer_collab:'We are open to collaboration',
-    footer_links:'Quick Links',
-    footer_services:'Services',
-    footer_about:'About',
-    footer_contact:'Contacts',
-    footer_contact_title:'Contacts',
-    footer_ready:'Ready to start?',
-    footer_cta:'Get Started',
-    chat_welcome:'Hi! How can I help?', 
-    chat_q1:'What services?', 
-    chat_q2:'Prices', 
-    chat_q3:'Leave a request', 
-    chat_a1:'We offer: SMM, targeting, shooting, editing & strategy.', 
-    chat_a2:'Standard — 65,000, Extended — 85,000, Basic (one-time) — 12,500, Advanced — 15,000 KGS.', 
-    chat_a3:'Message us on WhatsApp: +996503030018' 
-  },
-  kg: { 
-    nav_cta:'Арыз калтыруу', 
-    hero_sub:'Толук циклдеги маркетинг командасы', 
-    hero_tagline:'Биз реалдуу сатылуулар жана суранычをもтаруучу маркетинг түзөбүз',
-    hero_card1:'Сатуу өсүшү',
-    hero_card1_sub:'Айда реалдуу натыйжалар',
-    hero_card2:'Таргет + Стратегия',
-    hero_card2_sub:'Анализдөөдөн натыйжага',
-    hero_card3:'Толук контент',
-    hero_card3_sub:'Идея, түшүрүү, монтаж, жарыялоо',
-    hero_btn1:'Арыз калтыруу', 
-    hero_btn2:'WhatsApp', 
-    about_title:'Биз жөнүндө', 
-    about_intro:'SMM_KADR — контент, жарнама жана стратегия сферасындагы практиканттарды бириктирген маркетологдордун толук циклдеги командасы.',
-    about_process:'Биз кантип иштейбиз',
-    about_get:'Сиз эмне аласыз',
-    about_get1:'Максаттуу аудиторияны',
-    about_get2:'Өсүм метрикасы',
-    about_get3:'Ачык отчёттор',
-    about_why_title:'Эмне үчүн ишенем',
-    about_results:'Биздин клиенттердин натыйжалары',
-    about_cta1:'Пакеттерди көрүү', 
-    about_cta2:'Консультация алуу',
-    services_title:'Кызмат пакеттери', 
-    monthly_title:'📦 Айлык пакеттер', 
-    pkg_std:'СТАНДАРТ', 
-    pkg_ext:'КЕҢЕЙТИЛГЕН', 
-    pkg_popular:'⭐ Эң популярдуу', 
-    pkg_best_choice:'Өсүш үчүн эң жакшы', 
-    once_title:'🎬 Бир жолку кызматтар', 
-    pkg_base:'БАЗАЛЫК', 
-    pkg_adv:'ӨНҮККӨН', 
-    pkg_base_desc:'Команданын толук топтому', 
-    pkg_adv_desc:'Кеңейтилген тартуу, монтаж жана маркетинг', 
-    pkg_click_detail:'Деталдарды көрүңүз', 
-    services_cta1:'Пакетти танданыз', 
-    services_cta2:'Баасын эсептеңиз', 
-    team_title:'Биздин команда', 
-    reviews_title:'Пикирлер', 
-    review_add:'Пикир калтыруу', 
-    review_name_ph:'Атыңыз', 
-    review_text_ph:'Пикириңиз', 
-    review_rating:'Баа:', 
-    review_submit:'Жөнөтүү', 
-    contact_title:'Биз менен байланыш', 
-    contact_sub:'Долбооруңузду талкуулоого даярсызбы?', 
-    contact_wa:'WhatsApp жазуу', 
-    contact_ig:'Instagram', 
-    footer:'Бардык укуктар корголгон.',
-    footer_text:'SMM_KADR — иштеген маркетинг',
-    footer_collab:'Биз кызматташууга ачыкпыз',
-    footer_links:'Тез ссылкалар',
-    footer_services:'Кызматтар',
-    footer_about:'Биз жөнүндө',
-    footer_contact:'Байланыштар',
-    footer_contact_title:'Байланыштар',
-    footer_ready:'Баштоого даярсызбы?',
-    footer_cta:'Арыз калтыруу',
-    chat_welcome:'Салам! Кантип жардам бере алам?', 
-    chat_q1:'Кандай кызматтар?', 
-    chat_q2:'Баалар', 
-    chat_q3:'Арыз калтыруу', 
-    chat_a1:'Биз SMM, таргет, тартуу, монтаж жана стратегия сунуштайбыз.', 
-    chat_a2:'Стандарт — 65 000, Кеңейтилген — 85 000, Базалык — 12 500, Өнүккөн — 15 000 сом.', 
-    chat_a3:'WhatsApp: +996503030018' 
-  }
-};
-let currentLang = 'ru';
-function switchLang(lang) {
-  currentLang = lang;
-  const t = translations[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => { if(t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n]; });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el => { if(t[el.dataset.i18nPh]) el.placeholder = t[el.dataset.i18nPh]; });
-  initChat();
-}
-
-// Package details
-const packageDetails = {
-  standard: { title: 'СТАНДАРТ', price: '65 000 сом', features: ['8 видео в месяц', 'Отдел маркетинга', 'Мобилограф', 'Амбассадор', 'Таргетолог', 'Менеджер проекта', 'Контент и сценарии', 'Еженедельные отчёты'] },
-  extended: { title: 'РАСШИРЕННЫЙ', price: '85 000 сом', features: ['Всё из стандартного пакета +', 'Сторисмейкер', 'Графический дизайнер (до 10 постов)', 'Приоритетная поддержка', 'Месячная стратегия'] },
-  basic: { title: 'БАЗОВЫЙ', price: '12 500 сом', features: ['Полный набор команды', 'Однодневная съёмка', 'Базовый монтаж', 'Основная обработка', 'Простая стратегия'] },
-  advanced: { title: 'ПРОДВИНУТЫЙ', price: '15 000 сом', features: ['Расширенная съёмка', 'Профессиональный монтаж', 'Color grading', 'Саундтрак + эффекты', 'Полная маркетинговая стратегия'] }
-};
-
-function openPackageModal(pkg) {
-  const detail = packageDetails[pkg];
-  const t = translations[currentLang];
-
-  const html = `
-    <div class="max-w-md w-full bg-white rounded-3xl overflow-hidden shadow-2xl">
-      <!-- Header -->
-      <div class="px-8 pt-8 pb-6 text-center border-b">
-        <h2 class="text-3xl font-bold text-gray-900 mb-1">${detail.title}</h2>
-        <p class="text-4xl font-bold text-blue-600">${detail.price}</p>
-      </div>
-
-      <!-- Content -->
-      <div class="p-8">
-        <h3 class="font-semibold text-gray-800 mb-5 text-lg">Что входит:</h3>
-        <ul class="space-y-4">
-          ${detail.features.map(f => `
-            <li class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
-              </div>
-              <span class="text-gray-700 leading-relaxed">${f}</span>
-            </li>
-          `).join('')}
-        </ul>
-      </div>
-
-      <!-- Buttons -->
-      <div class="px-8 pb-8 pt-2 flex flex-col gap-3">
-        <a href="https://wa.me/996503030018" 
-           target="_blank" 
-           class="block text-center bg-emerald-500 hover:bg-emerald-600 transition-all text-white font-semibold py-4 rounded-2xl text-lg">
-          Заказать
-        </a>
-        
-        <button onclick="closeModal()" 
-                class="block text-center bg-gray-200 hover:bg-gray-300 transition-all text-gray-700 font-semibold py-4 rounded-2xl text-lg">
-          Закрыть
-        </button>
-      </div>
-    </div>
-  `;
-
-  document.getElementById('modalContent').innerHTML = html;
-  document.getElementById('modalOverlay').classList.add('open');
   
-  // Обновляем иконки
-  setTimeout(() => lucide.createIcons(), 100);
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-
-// Team
-const team = [
-  {name:'Айтбек Токтогулович', role:'Основатель', img:'team/aitbek.jpg'},
-  {name:'Рамиль Кадыров', role:'Директор', img:'team/ramil.jpeg'},
-  {name:'Эржан Алкожоев', role:'Заместитель директора', img:'team/erzhan.jpeg'},
-  {name:'Бегимай', role:'РОП', img:'team/begimay.jpg'},
-  {name:'Элдар Торокулов', role:'Финансовый директор', img:'team/eldar.jpg'},
-  {name:'Асема Исмаилбекова', role:'Менеджер', img:'team/asema.jpg'},
-  {name:'Артур Ибрагимов', role:'Амбассадор', img:'team/artur.jpeg'},
-  {name:'Гюзель', role:'Амбассадор', img:'team/guzel.jpg'},
-  {name:'Салима', role:'Амбассадор', img:'team/salima.jpeg'},
-  {name:'Эрлан', role:'Амбассадор', img:'team/erlan.jpg'},
-  {name:'Ажыманова Даяна', role:'Амбассадор', img:'team/dayana.jpeg'},
-  {name:'Джамалдинов Тариель', role:'Маркетолог', img:'team/tariel.jpg'},
-  {name:'Арсен Абдрахманов', role:'Маркетолог', img:'team/arsen.jpg'},
-  {name:'Актан', role:'Мобилограф', img:'team/aktan.jpg'},
-  {name:'Сайкал', role:'Мобилограф', img:'team/saikal.jpg'},
-  {name:'Даткайым', role:'Мобилограф', img:'team/datkaiym.jpg'},
-  {name:'Бекболот', role:'Мобилограф', img:'team/bekbolot.jpg'},
-  {name:'Бекболсун', role:'Главный программист / AI-инженер', img:'team/me.jpg'}
-];
-function renderTeam(){
-  document.getElementById('teamGrid').innerHTML = team.map(m => `
-    <div class="team-card">
-      
-      <img src="${m.img}" alt="${m.name}">
-
-      <div class="team-overlay">
-        <div class="team-info">
-          <div class="team-name">${m.name}</div>
-          <div class="team-role">${m.role}</div>
-        </div>
-      </div>
-
-    </div>
-  `).join('');
-}
-
-// Reviews with Data SDK
-let reviews = [];
-let selectedRating = 5;
-
-function buildStarSelect(){
-  const c = document.getElementById('starSelect');
-  c.innerHTML = '';
-  for(let i=1;i<=5;i++){
-    const s = document.createElement('span');
-    s.className = 'star text-2xl';
-    s.textContent = i <= selectedRating ? '★' : '☆';
-    s.style.color = i <= selectedRating ? '#f59e0b' : '#d1d5db';
-    s.onclick = () => { selectedRating = i; buildStarSelect(); };
-    c.appendChild(s);
-  }
-}
-
-async function submitReview(){
-  const name = document.getElementById('reviewName').value.trim();
-  const text = document.getElementById('reviewText').value.trim();
-  if(!name || !text) return;
-  if(reviews.length >= 999){ document.getElementById('reviewLoading').textContent = 'Лимит отзывов достигнут'; document.getElementById('reviewLoading').classList.remove('hidden'); return; }
-  document.getElementById('reviewLoading').classList.remove('hidden');
-  const r = await window.dataSdk.create({ name, text, rating: selectedRating, likes: 0, views: 0, created_at: new Date().toISOString() });
-  document.getElementById('reviewLoading').classList.add('hidden');
-  if(r.isOk){ document.getElementById('reviewName').value=''; document.getElementById('reviewText').value=''; selectedRating=5; buildStarSelect(); }
-}
-
-function renderReviews(){
-  const c = document.getElementById('reviewsList');
-  const existing = new Map([...c.children].map(el=>[el.dataset.rid, el]));
-  const ids = new Set();
-  reviews.forEach(rev => {
-    ids.add(rev.__backendId);
-    if(existing.has(rev.__backendId)){
-      const el = existing.get(rev.__backendId);
-      el.querySelector('.rev-likes').textContent = rev.likes;
-      el.querySelector('.rev-views').textContent = rev.views;
-    } else {
-      const div = document.createElement('div');
-      div.dataset.rid = rev.__backendId;
-      div.className = 'glass-white rounded-2xl p-5 shadow-sm card-hover';
-      div.innerHTML = `<div class="flex justify-between items-start mb-2"><strong class="text-gray-900">${rev.name}</strong><span class="text-amber-400">${'★'.repeat(rev.rating)}${'☆'.repeat(5-rev.rating)}</span></div><p class="text-gray-700 text-sm mb-3">${rev.text}</p><div class="flex gap-4 text-xs text-gray-500"><button onclick="likeReview('${rev.__backendId}')" class="flex items-center gap-1 hover:text-primary transition"><i data-lucide="heart" class="w-3 h-3"></i><span class="rev-likes">${rev.likes}</span></button><span class="flex items-center gap-1"><i data-lucide="eye" class="w-3 h-3"></i><span class="rev-views">${rev.views}</span></span></div>`;
-      c.appendChild(div);
-      lucide.createIcons();
-    }
-  });
-  existing.forEach((el,id) => { if(!ids.has(id)) el.remove(); });
-  document.getElementById('reviewCount').textContent = `${reviews.length} отзыв(ов)`;
-}
-
-async function likeReview(id){
-  const rev = reviews.find(r=>r.__backendId===id);
-  if(rev){ await window.dataSdk.update({...rev, likes: rev.likes+1}); }
-}
-
-// Increment views on visible reviews
-let viewedIds = new Set();
-function incrementViews(){
-  reviews.forEach(async rev => {
-    if(!viewedIds.has(rev.__backendId)){ viewedIds.add(rev.__backendId); await window.dataSdk.update({...rev, views: rev.views+1}); }
-  });
-}
-
-// Chatbot
-function toggleChat(){ document.getElementById('chatbot').classList.toggle('open'); }
-function initChat(){
-  const t = translations[currentLang];
-  document.getElementById('chatMessages').innerHTML = `<div class="bg-blue-50 text-sm rounded-xl p-3 max-w-[80%] text-gray-700">${t.chat_welcome}</div>`;
-  const btns = document.getElementById('chatButtons');
-  btns.innerHTML = '';
-  [{k:'chat_q1',a:'chat_a1'},{k:'chat_q2',a:'chat_a2'},{k:'chat_q3',a:'chat_a3'}].forEach(q=>{
-    const b = document.createElement('button');
-    b.className = 'text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full hover:bg-primary/20 transition font-medium';
-    b.textContent = t[q.k];
-    b.onclick = ()=>{ const msgs = document.getElementById('chatMessages'); msgs.innerHTML+=`<div class="bg-gray-100 text-sm rounded-xl p-3 max-w-[80%] ml-auto text-gray-700">${t[q.k]}</div>`; setTimeout(()=>{ msgs.innerHTML+=`<div class="bg-blue-50 text-sm rounded-xl p-3 max-w-[80%] text-gray-700">${t[q.a]}</div>`; msgs.scrollTop=msgs.scrollHeight; },500); };
-    btns.appendChild(b);
-  });
-}
-
-// Scroll animations
-const observer = new IntersectionObserver(entries => { entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-
-// Init
-renderTeam();
-buildStarSelect();
-initChat();
-
-// Data SDK init
-const dataHandler = {
-  onDataChanged(data){
-    reviews = data;
-    renderReviews();
-    setTimeout(incrementViews, 1000);
-  }
-};
-window.dataSdk.init(dataHandler);
-
-// Element SDK
-const defaultConfig = {
-  background_color: '#e0f2fe',
-  surface_color: '#ffffff',
-  text_color: '#111827',
-  primary_action: '#2563eb',
-  secondary_action: '#10b981',
-  font_family: 'Outfit',
-  font_size: 16,
-  hero_title: 'SMM_KADR',
-  hero_subtitle: 'Маркетинговая команда полного цикла',
-  hero_tagline: 'Мы создаём маркетинг, который приносит реальные заявки и продажи бизнесу',
-  about_intro: 'SMM_KADR — это команда маркетологов полного цикла, которая объединяет специалистов в сфере контента, рекламы и стратегии. Мы работаем как единая система: от идеи до результата.',
-  about_philosophy: 'Создаём не просто рекламу, а полноценные маркетинговые решения. Каждый проект — это сотрудничество, где ваш успех — наш успех.',
-  footer_text: 'SMM_KADR — маркетинг, который работает'
-};
-
-window.elementSdk.init({
-  defaultConfig,
-  onConfigChange: async (config) => {
-    const bg = config.background_color || defaultConfig.background_color;
-    const surface = config.surface_color || defaultConfig.surface_color;
-    const text = config.text_color || defaultConfig.text_color;
-    const primary = config.primary_action || defaultConfig.primary_action;
-    const font = config.font_family || defaultConfig.font_family;
-    const size = config.font_size || defaultConfig.font_size;
-
-    document.body.style.fontFamily = `${font}, sans-serif`;
-    document.body.style.fontSize = `${size}px`;
-    document.body.style.color = text;
-
-    document.querySelectorAll('.gradient-bg').forEach(el => {
-      el.style.background = `linear-gradient(135deg, ${bg} 0%, ${bg}99 40%, ${primary}33 100%)`;
-    });
-    document.querySelectorAll('.bg-primary').forEach(el => el.style.backgroundColor = primary);
-    document.querySelectorAll('.text-primary').forEach(el => el.style.color = primary);
-    document.querySelectorAll('.btn-whatsapp').forEach(el => el.style.backgroundColor = config.secondary_action || defaultConfig.secondary_action);
-
-    const title = config.hero_title || defaultConfig.hero_title;
-    const sub = config.hero_subtitle || defaultConfig.hero_subtitle;
-    const tagline = config.hero_tagline || defaultConfig.hero_tagline;
-    const intro = config.about_intro || defaultConfig.about_intro;
-    const phil = config.about_philosophy || defaultConfig.about_philosophy;
-    const footer = config.footer_text || defaultConfig.footer_text;
-    
-    document.getElementById('heroTitle').textContent = title;
-    document.getElementById('heroSubtitle').textContent = sub;
-    document.getElementById('heroTagline').textContent = tagline;
-    document.getElementById('aboutIntro').textContent = intro;
-    document.getElementById('aboutPhilosophyText').textContent = phil;
-    document.getElementById('footerText').textContent = footer;
-  },
-  mapToCapabilities: (config) => ({
-    recolorables: [
-      { get:()=>config.background_color||defaultConfig.background_color, set:(v)=>{config.background_color=v;window.elementSdk.setConfig({background_color:v})} },
-      { get:()=>config.surface_color||defaultConfig.surface_color, set:(v)=>{config.surface_color=v;window.elementSdk.setConfig({surface_color:v})} },
-      { get:()=>config.text_color||defaultConfig.text_color, set:(v)=>{config.text_color=v;window.elementSdk.setConfig({text_color:v})} },
-      { get:()=>config.primary_action||defaultConfig.primary_action, set:(v)=>{config.primary_action=v;window.elementSdk.setConfig({primary_action:v})} },
-      { get:()=>config.secondary_action||defaultConfig.secondary_action, set:(v)=>{config.secondary_action=v;window.elementSdk.setConfig({secondary_action:v})} }
-    ],
-    borderables: [],
-    fontEditable: { get:()=>config.font_family||defaultConfig.font_family, set:(v)=>{config.font_family=v;window.elementSdk.setConfig({font_family:v})} },
-    fontSizeable: { get:()=>config.font_size||defaultConfig.font_size, set:(v)=>{config.font_size=v;window.elementSdk.setConfig({font_size:v})} }
-  }),
-  mapToEditPanelValues: (config) => new Map([
-    ['hero_title', config.hero_title || defaultConfig.hero_title],
-    ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
-    ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
-    ['about_intro', config.about_intro || defaultConfig.about_intro],
-    ['about_philosophy', config.about_philosophy || defaultConfig.about_philosophy],
-    ['footer_text', config.footer_text || defaultConfig.footer_text]
-  ])
-});
-</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f464cc49537540c',t:'MTc3NzU0OTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script src="index.js"></script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f464cc49537540c',t:'MTc3NzU0OTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+ </body>
 </html>
