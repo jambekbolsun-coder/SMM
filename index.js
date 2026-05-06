@@ -321,7 +321,7 @@ function closeModal() {
 // Team
 const team = [
   {name:'Айтбек Токтогулович', role:'Основатель', img:'/Team/img/aitbek.png'},
-  {name:'Рамиль Кадыров', role:'Директор', img:'/Team/img/ramil.jpeg'},
+  {name:'Рамиль Кадыров', role:'Директор', img:'/Team/img/fool.webp'},
   {name:'Эржан Алкожоев', role:'Заместитель директора', img:'/Team/img/erzhan.png'},
   {name:'Бегимай', role:'РОП', img:'/Team/img/begimay.jpeg'},
   {name:'Элдар Торокулов', role:'Финансовый директор', img:'/Team/img/eldar.png'},
