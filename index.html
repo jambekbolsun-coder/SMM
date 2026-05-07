@@ -134,43 +134,8 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
         <p class="text-sm text-gray-600">Еженедельная аналитика и результаты</p>
        </div>
       </div>
-     </div><div class="mb-12">
-      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center" data-i18n="about_why_title">Почему выбирают нас</h3>
-      <div class="grid md:grid-cols-2 gap-6">
-       <div class="flex gap-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary"></i>
-        </div>
-        <div>
-         <h4 class="font-semibold text-gray-900 mb-1">Опытная команда</h4>
-         <p class="text-sm text-gray-600">3+ года на рынке, 50+ довольных клиентов</p>
-        </div>
-       </div>
-       <div class="flex gap-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary"></i>
-        </div>
-        <div>
-         <h4 class="font-semibold text-gray-900 mb-1">Системный подход</h4>
-         <p class="text-sm text-gray-600">От анализа до результата — всё структурировано</p>
-        </div>
-       </div>
-       <div class="flex gap-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary"></i>
-        </div>
-        <div>
-         <h4 class="font-semibold text-gray-900 mb-1">Цифры, не обещания</h4>
-         <p class="text-sm text-gray-600">+180% вовлечённость, +65% продаж в среднем</p>
-        </div>
-       </div>
-       <div class="flex gap-4">
-        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary"></i>
-        </div>
-        <div>
-         <h4 class="font-semibold text-gray-900 mb-1">Единая команда</h4>
-         <p class="text-sm text-gray-600">Мы как ваш внутренний маркетинговый отдел</p>
-        </div>
-       </div>
-      </div>
-     </div><div class="glass-white rounded-2xl p-8 text-center">
+     </div>
+     <div class="glass-white rounded-2xl p-8 text-center">
       <h3 class="text-2xl font-bold text-gray-900 mb-6" data-i18n="about_results">Результаты наших клиентов</h3>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
        <div>
@@ -250,27 +215,58 @@ tailwind.config = { theme: { extend: { colors: { primary: '#2563eb', dark: '#0a1
        </div>
       </div>
      </div>
-     <div class="flex flex-wrap justify-center gap-4"><a href="#contact" class="btn-primary bg-primary text-white px-7 py-3 rounded-full font-semibold hover:shadow-lg transition" data-i18n="services_cta1">Выбрать пакет</a> <a href="https://wa.me/996503030018" target="_blank" rel="noopener noreferrer" class="btn-primary btn-whatsapp text-white px-7 py-3 rounded-full font-semibold hover:shadow-lg transition" data-i18n="services_cta2">Рассчитать стоимость</a>
-     </div>
+<div class="flex flex-wrap justify-center items-center gap-4 mt-6">
+
+  <a 
+    href="#contact"
+    class="group inline-flex items-center justify-center gap-3 
+    px-8 py-4 rounded-2xl 
+    bg-primary text-white 
+    font-semibold text-[15px]
+    shadow-lg shadow-blue-500/20
+    transition-all duration-300
+    hover:-translate-y-1 hover:scale-[1.03] hover:shadow-2xl"
+    data-i18n="services_cta1"
+  >
+    <i data-lucide="package" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-6"></i>
+    <span>Выбрать пакет</span>
+  </a>
+
+  <a 
+    href="https://wa.me/996503030018"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group inline-flex items-center justify-center gap-3 
+    px-8 py-4 rounded-2xl 
+    btn-whatsapp text-white 
+    font-semibold text-[15px]
+    shadow-lg shadow-emerald-500/20
+    transition-all duration-300
+    hover:-translate-y-1 hover:scale-[1.03] hover:shadow-2xl"
+    data-i18n="services_cta2"
+  >
+    <i data-lucide="calculator" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-6"></i>
+    <span>Рассчитать стоимость</span>
+  </a>
+
+  <button 
+    onclick="openTeamModal()" 
+    class="group inline-flex items-center justify-center gap-3 
+    px-8 py-4 rounded-2xl 
+    bg-slate-900 text-white 
+    font-semibold text-[15px]
+    shadow-lg shadow-black/20
+    transition-all duration-300
+    hover:-translate-y-1 hover:scale-[1.03] hover:shadow-2xl"
+  >
+    <i data-lucide="users" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-6"></i>
+    <span>Показать команду</span>
+  </button>
+
+</div>
     </div>
    </section>
-<section class="py-32 px-8 fade-in bg-white" id="team">
-  <div class="max-w-7xl xl:max-w-[1400px] mx-auto text-center">
-    
-    <h2 class="text-5xl md:text-6xl font-bold mb-16 text-gray-900" data-i18n="team_title">
-      Наша команда
-    </h2>
 
-    <button 
-      onclick="openTeamModal()" 
-      class="btn-primary bg-primary text-white px-10 py-5 text-lg rounded-full font-semibold hover:shadow-xl transition inline-flex items-center gap-4"
-    >
-      <i data-lucide="users" class="w-6 h-6"></i>
-      <span>Показать команду</span>
-    </button>
-
-  </div>
-</section>
    
    <section class="py-24 px-6 bg-blue-50 fade-in" id="reviews">
     <div class="max-w-4xl mx-auto text-center">
