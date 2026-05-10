@@ -334,7 +334,7 @@ const team = [
   {name:'Джамалдинов Тариель', role:'Маркетолог', img:'./Team/img/tariel.png'},
   {name:'Арсен Абдрахманов', role:'Маркетолог', img:'./Team/img/arsen.png'},
   {name:'Радмир', role:'Маркетолог', img:'./Team/img/radmir.jpeg'},
-  {name:'Актан', role:'Мобилограф', img:'./Team/img/aktan.PNG'},
+
   {name:'Сайкал', role:'Мобилограф', img:'./Team/img/saikal.jpeg'},
   {name:'Даткайым', role:'Мобилограф', img:'./Team/img/datkaiym.png'},
   {name:'Бекболот', role:'Мобилограф', img:'./Team/img/bekbolot.jpeg'},
