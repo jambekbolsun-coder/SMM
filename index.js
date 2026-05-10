@@ -352,7 +352,11 @@ function renderTeam(){
           <div class="team-role">${m.role}</div>
         </div>
       </div>
+    
 
+
+
+      
     </div>
   `).join('');
 }
